@@ -15,24 +15,27 @@ namespace PeopleProTraining.Dal.Models
 using System;
     using System.Collections.Generic;
     
-public partial class Employee
+public partial class Building
 {
 
-    public int Id { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Building()
+    {
 
-    public string FirstName { get; set; }
+        this.Employees = new HashSet<Employee>();
 
-    public string LastName { get; set; }
-
-    public int DepartmentDepartmentId { get; set; }
-
-    public int BuildingBuildingId { get; set; }
+    }
 
 
+    public int BuildingId { get; set; }
 
-    public virtual Department Department { get; set; }
+    public string BuildingName { get; set; }
 
-    public virtual Building Building { get; set; }
+
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Employee> Employees { get; set; }
 
 }
 

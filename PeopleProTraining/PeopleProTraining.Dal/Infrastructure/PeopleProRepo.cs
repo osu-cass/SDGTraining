@@ -42,11 +42,60 @@ namespace PeopleProTraining.Dal.Infrastructure
         {
             return GetEmployee(t => t.Id == id);
         }
+        #endregion
 
+        #region buildings
+        public IQueryable<Building> GetBuildings()
+        {
+            return p_context.Buildings;
+        }
+        public IEnumerable<Building> GetBuildings(Func<Building, bool> predicate)
+        {
+            return p_context.Buildings.Where(predicate);
+        }          
+
+        public Building GetBuilding(Func<Building, bool> predicate)
+        {
+            return GetBuildings().SingleOrDefault(predicate);
+        }
+        public Building GetBuilding(int id)
+        {
+            return GetBuilding(t => t.BuildingId == id);
+        }
+        #endregion
+
+        #region departments
+        public IQueryable<Department> GetDepartments()
+        {
+            return p_context.Departments;
+        }
+
+        public IEnumerable<Department> GetDepartments(Func<Department, bool> predicate)
+        {
+            return p_context.Departments.Where(predicate);
+        }
+
+        public Department GetDepartment(Func<Department, bool> predicate)
+        {
+            return GetDepartments().SingleOrDefault(predicate);
+        }
+
+        public Department GetDepartment(int id)
+        {
+            return GetDepartment(t => t.DepartmentId == id);
+        }
         #endregion
         #endregion
 
 
+        #region save
+        public void SaveEmployee(Employee employee)
+        {
+            DoSave(p_context.Employees, employee, employee.Id, t => t.Id == employee.Id);
+        }
+
+
+        #endregion
 
         /// <summary>
         /// Abstracts the saving process for an item in the Db Context.
