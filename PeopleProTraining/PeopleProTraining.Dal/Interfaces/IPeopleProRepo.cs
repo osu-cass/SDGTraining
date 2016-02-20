@@ -39,5 +39,9 @@ namespace PeopleProTraining.Dal.Interfaces
         #region save
         void SaveEmployee(Employee employee);
         #endregion
+
+        #region delete
+        void Dispose(int? id);
+        #endregion
     }
 }

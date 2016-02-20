@@ -29,7 +29,8 @@ namespace PeopleProTraining.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+
+            Employee employee = p_repo.GetEmployee((int)id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -40,8 +41,8 @@ namespace PeopleProTraining.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
-            ViewBag.BuildingBuildingId = new SelectList(db.Buildings, "BuildingId", "BuildingName");
-            ViewBag.DepartmentDepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode");
+            ViewBag.BuildingBuildingId = new SelectList(p_repo.GetBuildings(), "BuildingId", "BuildingName");
+            ViewBag.DepartmentDepartmentId = new SelectList(p_repo.GetDepartments(), "DepartmentId", "DepartmentCode");
             return View();
         }
 
@@ -54,13 +55,12 @@ namespace PeopleProTraining.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(employee);
-                db.SaveChanges();
+                p_repo.SaveEmployee(employee);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BuildingBuildingId = new SelectList(db.Buildings, "BuildingId", "BuildingName", employee.BuildingBuildingId);
-            ViewBag.DepartmentDepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode", employee.DepartmentDepartmentId);
+            ViewBag.BuildingBuildingId = new SelectList(p_repo.GetBuildings(), "BuildingId", "BuildingName", employee.BuildingBuildingId);
+            ViewBag.DepartmentDepartmentId = new SelectList(p_repo.GetDepartments(), "DepartmentId", "DepartmentCode", employee.DepartmentDepartmentId);
             return View(employee);
         }
 
@@ -71,13 +71,13 @@ namespace PeopleProTraining.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = p_repo.GetEmployee((int)id);
             if (employee == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.BuildingBuildingId = new SelectList(db.Buildings, "BuildingId", "BuildingName", employee.BuildingBuildingId);
-            ViewBag.DepartmentDepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode", employee.DepartmentDepartmentId);
+            ViewBag.BuildingBuildingId = new SelectList(p_repo.GetBuildings(), "BuildingId", "BuildingName", employee.BuildingBuildingId);
+            ViewBag.DepartmentDepartmentId = new SelectList(p_repo.GetDepartments(), "DepartmentId", "DepartmentCode", employee.DepartmentDepartmentId);
             return View(employee);
         }
 
@@ -90,12 +90,11 @@ namespace PeopleProTraining.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employee).State = EntityState.Modified;
-                db.SaveChanges();
+                p_repo.SaveEmployee(employee);
                 return RedirectToAction("Index");
             }
-            ViewBag.BuildingBuildingId = new SelectList(db.Buildings, "BuildingId", "BuildingName", employee.BuildingBuildingId);
-            ViewBag.DepartmentDepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode", employee.DepartmentDepartmentId);
+            ViewBag.BuildingBuildingId = new SelectList(p_repo.GetBuildings(), "BuildingId", "BuildingName", employee.BuildingBuildingId);
+            ViewBag.DepartmentDepartmentId = new SelectList(p_repo.GetDepartments(), "DepartmentId", "DepartmentCode", employee.DepartmentDepartmentId);
             return View(employee);
         }
 
@@ -106,7 +105,7 @@ namespace PeopleProTraining.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = p_repo.GetEmployee((int)id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -119,17 +118,22 @@ namespace PeopleProTraining.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
-            db.SaveChanges();
+            p_repo.DeleteEmployee(id);
             return RedirectToAction("Index");
         }
+        //{
+        //    Employee employee = p_repo.GetEmployee(id);
+        //    p_repo.Employee.Dispose();
+        //    db.Employees.Remove(employee);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                p_repo.Dispose();
             }
             base.Dispose(disposing);
         }
