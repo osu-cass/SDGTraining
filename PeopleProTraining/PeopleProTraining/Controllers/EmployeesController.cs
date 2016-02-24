@@ -42,7 +42,7 @@ namespace PeopleProTraining.Controllers
         public ActionResult Create()
         {
             ViewBag.BuildingBuildingId = new SelectList(p_repo.GetBuildings(), "BuildingId", "BuildingName");
-            ViewBag.DepartmentDepartmentId = new SelectList(p_repo.GetDepartments(), "DepartmentId", "DepartmentCode");
+            ViewBag.DepartmentDepartmentId = p_repo.GetDepartments().Select(t => new SelectListItem() { Text = t.DepartmentName, Value = t.DepartmentId.ToString() });
             return View();
         }
 
@@ -60,7 +60,7 @@ namespace PeopleProTraining.Controllers
             }
 
             ViewBag.BuildingBuildingId = new SelectList(p_repo.GetBuildings(), "BuildingId", "BuildingName", employee.BuildingBuildingId);
-            ViewBag.DepartmentDepartmentId = new SelectList(p_repo.GetDepartments(), "DepartmentId", "DepartmentCode", employee.DepartmentDepartmentId);
+            ViewBag.DepartmentDepartmentId = p_repo.GetDepartments().Select(t => new SelectListItem() { Text = t.DepartmentName, Value = t.DepartmentId.ToString() });
             return View(employee);
         }
 
@@ -71,13 +71,13 @@ namespace PeopleProTraining.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = p_repo.GetEmployee((int)id);
+            Employee employee = p_repo.GetEmployee(id.Value);
             if (employee == null)
             {
                 return HttpNotFound();
             }
             ViewBag.BuildingBuildingId = new SelectList(p_repo.GetBuildings(), "BuildingId", "BuildingName", employee.BuildingBuildingId);
-            ViewBag.DepartmentDepartmentId = new SelectList(p_repo.GetDepartments(), "DepartmentId", "DepartmentCode", employee.DepartmentDepartmentId);
+            ViewBag.DepartmentDepartmentId = new SelectList(p_repo.GetDepartments(), "DepartmentId", "DepartmentName", employee.DepartmentDepartmentId);
             return View(employee);
         }
 
@@ -94,18 +94,18 @@ namespace PeopleProTraining.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.BuildingBuildingId = new SelectList(p_repo.GetBuildings(), "BuildingId", "BuildingName", employee.BuildingBuildingId);
-            ViewBag.DepartmentDepartmentId = new SelectList(p_repo.GetDepartments(), "DepartmentId", "DepartmentCode", employee.DepartmentDepartmentId);
+            ViewBag.DepartmentDepartmentId = p_repo.GetDepartments().Select(t => new SelectListItem() { Text = t.DepartmentName, Value = t.DepartmentId.ToString() });
             return View(employee);
         }
 
         // GET: Employees/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = p_repo.GetEmployee((int)id);
+            Employee employee = p_repo.GetEmployee(id.Value);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -118,24 +118,14 @@ namespace PeopleProTraining.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            p_repo.DeleteEmployee(id);
+            p_repo.DeleteEmployee(p_repo.GetEmployee(id));
             return RedirectToAction("Index");
         }
-        //{
-        //    Employee employee = p_repo.GetEmployee(id);
-        //    p_repo.Employee.Dispose();
-        //    db.Employees.Remove(employee);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                p_repo.Dispose();
-            }
-            base.Dispose(disposing);
+           p_repo.Dispose(disposing);
+           base.Dispose(disposing);
         }
     }
 }

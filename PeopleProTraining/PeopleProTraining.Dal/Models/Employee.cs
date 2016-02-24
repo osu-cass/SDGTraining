@@ -10,6 +10,7 @@ namespace PeopleProTraining.Dal.Models
     [MetadataType(typeof(EmployeeMetaData))]
     public partial class Employee
     {
+
     }
 
     public class EmployeeMetaData
@@ -25,6 +26,9 @@ namespace PeopleProTraining.Dal.Models
         [Required (ErrorMessage = "Last name required.")]
         [StringLength (20, MinimumLength = 1)]
         public string LastName { get; set; }
+
+        [UIHint("DepartmentDepartmentId")]
+        public int DepartmentDepartmentId { get; set; }
     }
 
 

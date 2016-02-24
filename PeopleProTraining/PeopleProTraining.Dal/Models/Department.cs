@@ -17,8 +17,8 @@ namespace PeopleProTraining.Dal.Models
         [Display(Name = "Staff Count")]
         public int StaffCount { get; set; }
 
-        [Display(Name = "Department Code")]
-        [Required (ErrorMessage = "Department code required.")]
+        [Display(Name = "Department ID")]
+        [Required (ErrorMessage = "Department id required.")]
         public int DepartmentId { get; set; }
 
         [Display (Name = "Department Name")]

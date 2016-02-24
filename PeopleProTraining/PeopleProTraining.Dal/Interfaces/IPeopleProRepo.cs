@@ -17,6 +17,7 @@ namespace PeopleProTraining.Dal.Interfaces
 
         Employee GetEmployee(Func<Employee, bool> predicate);
         Employee GetEmployee(int id);
+        void DeleteEmployee(Employee employee);
         #endregion
 
         #region buildings
@@ -41,7 +42,7 @@ namespace PeopleProTraining.Dal.Interfaces
         #endregion
 
         #region delete
-        void Dispose(int? id);
+        void Dispose(bool isDisposing);
         #endregion
     }
 }

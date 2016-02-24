@@ -27,8 +27,6 @@ public partial class Department
     }
 
 
-    public string DepartmentCode { get; set; }
-
     public string StaffCount { get; set; }
 
     public string DepartmentName { get; set; }

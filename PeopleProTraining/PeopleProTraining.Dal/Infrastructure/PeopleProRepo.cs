@@ -95,8 +95,7 @@ namespace PeopleProTraining.Dal.Infrastructure
         }
 
 
-        #endregion
-
+        
         /// <summary>
         /// Abstracts the saving process for an item in the Db Context.
         /// </summary>
@@ -119,12 +118,13 @@ namespace PeopleProTraining.Dal.Infrastructure
 
             p_context.SaveChanges();
         }
+        #endregion
 
         #region Disposal
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        public void Dispose()
+        public void Dispose(int? id)
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
@@ -136,7 +136,7 @@ namespace PeopleProTraining.Dal.Infrastructure
         /// <param name="isDisposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031",
             Justification = "Swallows general exceptions, to prevent the service from being disabled.")]
-        private void Dispose(bool isDisposing)
+        public void Dispose(bool isDisposing)
         {
             if (!p_disposed)
             {
@@ -150,7 +150,7 @@ namespace PeopleProTraining.Dal.Infrastructure
                         {
                             if (p_context != null)
                             {
-                                p_context.Dispose();
+                                p_context.Dispose(); //circles?
                             }
                         }
                         catch (Exception)
@@ -166,6 +166,16 @@ namespace PeopleProTraining.Dal.Infrastructure
             }
         }
 
+        public void DeleteEmployee(Employee employee)
+        {
+            if (employee == null || employee.Id <= 0)
+            {
+                return;
+            }
+
+            p_context.Employees.Remove(employee);
+            p_context.SaveChanges();
+        }
         #endregion
 
     }
