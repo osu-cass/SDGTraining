@@ -22,7 +22,7 @@ namespace PeopleProTraining.Dal.Models
         public int DepartmentId { get; set; }
 
         [Display (Name = "Department Name")]
-        [Required (ErrorMessage = "Department name required.")]
+        [Required (ErrorMessage = "Department names must be between 3 and 20 characters long.")]
         [StringLength (20, MinimumLength = 3)]
         public string DepartmentName { get; set; }
     }

@@ -9,6 +9,8 @@ namespace PeopleProTraining.Dal.Interfaces
 {
     public interface IPeopleProRepo
     {
+        void SetStaffCounts();
+
         #region access
 
         #region employees

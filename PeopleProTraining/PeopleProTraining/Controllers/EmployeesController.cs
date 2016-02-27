@@ -61,6 +61,7 @@ namespace PeopleProTraining.Controllers
 
             ViewBag.BuildingBuildingId = new SelectList(p_repo.GetBuildings(), "BuildingId", "BuildingName", employee.BuildingBuildingId);
             ViewBag.DepartmentDepartmentId = p_repo.GetDepartments().Select(t => new SelectListItem() { Text = t.DepartmentName, Value = t.DepartmentId.ToString() });
+
             return View(employee);
         }
 

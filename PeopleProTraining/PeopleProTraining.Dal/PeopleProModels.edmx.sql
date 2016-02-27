@@ -54,9 +54,9 @@ GO
 
 -- Creating table 'Departments'
 CREATE TABLE [dbo].[Departments] (
-    [StaffCount] nvarchar(max)  NULL,
+    [StaffCount] int  NULL,
     [DepartmentName] nvarchar(max)  NOT NULL,
-    [DepartmentId] int  NOT NULL
+    [DepartmentId] int IDENTITY(1,1) NOT NULL
 );
 GO
 

@@ -32,7 +32,7 @@
     <Key>
       <PropertyRef Name="DepartmentId" />
     </Key>
-    <Property Name="StaffCount" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="StaffCount" Type="int" Nullable="true" />
     <Property Name="DepartmentName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DepartmentId" Type="int" Nullable="false" />
   </EntityType>
@@ -100,7 +100,7 @@
           <Key>
             <PropertyRef Name="DepartmentId" />
           </Key>
-          <Property Name="StaffCount" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
+          <Property Name="StaffCount" Nullable="true" Type="Int32" />
           <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="DepartmentId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Employees" Relationship="PeopleProModels.EmployeeDepartment" FromRole="Department" ToRole="Employee" />

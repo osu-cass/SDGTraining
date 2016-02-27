@@ -84,6 +84,7 @@ namespace PeopleProTraining.Controllers
             if (ModelState.IsValid)
             {
                 p_context.Entry(department).State = EntityState.Modified;
+                department.StaffCount = 0;
                 p_context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -98,6 +99,31 @@ namespace PeopleProTraining.Controllers
                 p_context.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public ActionResult CreateAjax(Department department)
+        {
+            //if (department.DepartmentName == null || department.DepartmentName.Length < 2)
+            //{
+            //    return new HttpStatusCodeResult(420, "Department names must be at least 3 characters long.");
+            //}
+
+            if (!ModelState.IsValid)
+            {
+                var c = ModelState.Values.Where(x => x.Errors.Count >= 1).ToList();
+                //locate where the errors arise on the page
+                //set error partial
+                //load partials to error locations
+            }
+
+            else
+            {
+                    p_context.Departments.Add(department);
+                    department.StaffCount = 0;
+                    p_context.SaveChanges();
+            }
+            return PartialView("_DepartmentRow", department);
         }
     }
 }

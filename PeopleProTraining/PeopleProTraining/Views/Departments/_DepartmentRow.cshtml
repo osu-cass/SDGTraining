@@ -1,0 +1,18 @@
+﻿@model PeopleProTraining.Dal.Models.Department
+
+<tr>
+    <td>
+        @Html.DisplayFor(m => m.DepartmentId)
+    </td>
+    <td>
+        @Html.DisplayFor(m => m.StaffCount)
+    </td>
+    <td>
+        @Html.DisplayFor(m => m.DepartmentName)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.DepartmentId }) |
+        @Html.ActionLink("Details", "Details", new { id = Model.DepartmentId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.DepartmentId })
+    </td>
+</tr>

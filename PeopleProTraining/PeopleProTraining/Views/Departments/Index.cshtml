@@ -2,14 +2,53 @@
 
 @{
     ViewBag.Title = "Index";
+    var department = new PeopleProTraining.Dal.Models.Department();
+    var error = "";
 }
+
+@Html.ValidationSummary(error, new { @class = "text-danger" });
+
+<script type="text/javascript">
+    function CreatePost() {
+        var data = { DepartmentName: document.getElementById("department_DepartmentName").value }
+        $("#DepartmentError").html("");
+        $.ajax({
+            url: "/Departments/CreateAjax",
+            type: 'post',
+            data: data,
+            success: function (result) {
+                $("#department_Table").append(result);
+                $("#department_DepartmentName").val("");
+            },
+            failure: function (request, status, error) {
+                console.log(status);
+                console.log(error);
+            },
+            error: function (request, status, error) {
+                $("#DepartmentError").html(error);
+                console.log(status);
+                console.log(error);
+            }
+        })
+    }
+</script>
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<div class="form-group">
+    @Html.LabelFor(model => department.DepartmentName, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => department.DepartmentName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => department.DepartmentName, "", new { id = "DepartmentError", @class = "text-danger"})
+    </div>
+
+    <div class="col-md-offset-0 col-md-10">
+        <input type="button" value="Create New" class="btn btn-default" onclick="CreatePost()"/>
+    </div>
+    <br><br>
+</div>
+
+<table class="table" id="department_Table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.DepartmentId)
@@ -24,22 +63,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartmentId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StaffCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartmentName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DepartmentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DepartmentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DepartmentId })
-        </td>
-    </tr>
+    @Html.Partial("_DepartmentRow", item);
 }
 
 </table>

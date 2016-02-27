@@ -20,6 +20,23 @@ namespace PeopleProTraining.Dal.Infrastructure
         public PeopleProRepo(IPeopleProContext context)
         {
             p_context = context;
+            SetStaffCounts();
+        }
+
+        public void SetStaffCounts()
+        {
+            foreach(Department d in p_context.Departments)
+            {
+                d.StaffCount = 0;
+
+                foreach(Employee e in p_context.Employees)
+                {
+                    if(e.DepartmentDepartmentId == d.DepartmentId)
+                    {
+                        d.StaffCount++;
+                    }
+                }
+            }
         }
 
         #region access
@@ -87,15 +104,30 @@ namespace PeopleProTraining.Dal.Infrastructure
         #endregion
         #endregion
 
-
         #region save
         public void SaveEmployee(Employee employee)
         {
+            if(employee.Id <= 0)
+            {
+                var department = GetDepartment(employee.DepartmentDepartmentId);
+                department.StaffCount++;
+                SaveDepartment(department);
+                employee.Department = department;
+            }
             DoSave(p_context.Employees, employee, employee.Id, t => t.Id == employee.Id);
         }
 
+        public void SaveDepartment(Department department)
+        {
+            DoSave(p_context.Departments, department, department.DepartmentId, t => t.DepartmentId == department.DepartmentId);
 
-        
+        }
+
+        public void SaveBuilding(Building building)
+        {
+            DoSave(p_context.Buildings, building, building.BuildingId, t => t.BuildingId == building.BuildingId);
+        }
+
         /// <summary>
         /// Abstracts the saving process for an item in the Db Context.
         /// </summary>

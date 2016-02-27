@@ -27,7 +27,7 @@ public partial class Department
     }
 
 
-    public string StaffCount { get; set; }
+    public Nullable<int> StaffCount { get; set; }
 
     public string DepartmentName { get; set; }
 
