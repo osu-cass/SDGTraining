@@ -20,6 +20,23 @@ namespace PeopleProTraining.Dal.Infrastructure
         public PeopleProRepo(IPeopleProContext context)
         {
             p_context = context;
+            SetStaffCounts();
+        }
+
+        public void SetStaffCounts()
+        {
+            foreach(Department d in p_context.Departments)
+            {
+                d.StaffCount = 0;
+
+                foreach(Employee e in p_context.Employees)
+                {
+                    if(e.DepartmentDepartmentId == d.DepartmentId)
+                    {
+                        d.StaffCount++;
+                    }
+                }
+            }
         }
 
         #region access
@@ -42,11 +59,74 @@ namespace PeopleProTraining.Dal.Infrastructure
         {
             return GetEmployee(t => t.Id == id);
         }
+        #endregion
 
+        #region buildings
+        public IQueryable<Building> GetBuildings()
+        {
+            return p_context.Buildings;
+        }
+        public IEnumerable<Building> GetBuildings(Func<Building, bool> predicate)
+        {
+            return p_context.Buildings.Where(predicate);
+        }          
+
+        public Building GetBuilding(Func<Building, bool> predicate)
+        {
+            return GetBuildings().SingleOrDefault(predicate);
+        }
+        public Building GetBuilding(int id)
+        {
+            return GetBuilding(t => t.BuildingId == id);
+        }
+        #endregion
+
+        #region departments
+        public IQueryable<Department> GetDepartments()
+        {
+            return p_context.Departments;
+        }
+
+        public IEnumerable<Department> GetDepartments(Func<Department, bool> predicate)
+        {
+            return p_context.Departments.Where(predicate);
+        }
+
+        public Department GetDepartment(Func<Department, bool> predicate)
+        {
+            return GetDepartments().SingleOrDefault(predicate);
+        }
+
+        public Department GetDepartment(int id)
+        {
+            return GetDepartment(t => t.DepartmentId == id);
+        }
         #endregion
         #endregion
 
+        #region save
+        public void SaveEmployee(Employee employee)
+        {
+            if(employee.Id <= 0)
+            {
+                var department = GetDepartment(employee.DepartmentDepartmentId);
+                department.StaffCount++;
+                SaveDepartment(department);
+                employee.Department = department;
+            }
+            DoSave(p_context.Employees, employee, employee.Id, t => t.Id == employee.Id);
+        }
 
+        public void SaveDepartment(Department department)
+        {
+            DoSave(p_context.Departments, department, department.DepartmentId, t => t.DepartmentId == department.DepartmentId);
+
+        }
+
+        public void SaveBuilding(Building building)
+        {
+            DoSave(p_context.Buildings, building, building.BuildingId, t => t.BuildingId == building.BuildingId);
+        }
 
         /// <summary>
         /// Abstracts the saving process for an item in the Db Context.
@@ -70,12 +150,13 @@ namespace PeopleProTraining.Dal.Infrastructure
 
             p_context.SaveChanges();
         }
+        #endregion
 
         #region Disposal
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        public void Dispose()
+        public void Dispose(int? id)
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
@@ -87,7 +168,7 @@ namespace PeopleProTraining.Dal.Infrastructure
         /// <param name="isDisposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031",
             Justification = "Swallows general exceptions, to prevent the service from being disabled.")]
-        private void Dispose(bool isDisposing)
+        public void Dispose(bool isDisposing)
         {
             if (!p_disposed)
             {
@@ -101,7 +182,7 @@ namespace PeopleProTraining.Dal.Infrastructure
                         {
                             if (p_context != null)
                             {
-                                p_context.Dispose();
+                                p_context.Dispose(); //circles?
                             }
                         }
                         catch (Exception)
@@ -117,6 +198,16 @@ namespace PeopleProTraining.Dal.Infrastructure
             }
         }
 
+        public void DeleteEmployee(Employee employee)
+        {
+            if (employee == null || employee.Id <= 0)
+            {
+                return;
+            }
+
+            p_context.Employees.Remove(employee);
+            p_context.SaveChanges();
+        }
         #endregion
 
     }

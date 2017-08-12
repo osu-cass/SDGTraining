@@ -7,28 +7,136 @@
     <Schema Namespace="PeopleProModels.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="PeopleProModelsStoreContainer">
     <EntitySet Name="Employees" EntityType="PeopleProModels.Store.Employees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Departments" EntityType="PeopleProModels.Store.Departments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Buildings" EntityType="PeopleProModels.Store.Buildings" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="EmployeeDepartment" Association="PeopleProModels.Store.EmployeeDepartment">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Department" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="BuildingEmployee" Association="PeopleProModels.Store.BuildingEmployee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Building" EntitySet="Buildings" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Employees">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DepartmentDepartmentId" Type="int" Nullable="false" />
+    <Property Name="BuildingBuildingId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="StaffCount" Type="int" Nullable="true" />
+    <Property Name="DepartmentName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Buildings">
+    <Key>
+      <PropertyRef Name="BuildingId" />
+    </Key>
+    <Property Name="BuildingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BuildingName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="EmployeeDepartment">
+    <End Role="Employee" Type="PeopleProModels.Store.Employees" Multiplicity="*" />
+    <End Role="Department" Type="PeopleProModels.Store.Departments" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="DepartmentDepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BuildingEmployee">
+    <End Role="Employee" Type="PeopleProModels.Store.Employees" Multiplicity="*" />
+    <End Role="Building" Type="PeopleProModels.Store.Buildings" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Building">
+        <PropertyRef Name="BuildingId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="BuildingBuildingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="PeopleProModels" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="PeopleProModelsContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Employees" EntityType="PeopleProModels.Employee" />
+          <EntitySet Name="Departments" EntityType="PeopleProModels.Department" />
+          <AssociationSet Name="EmployeeDepartment" Association="PeopleProModels.EmployeeDepartment">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Department" EntitySet="Departments" />
+          </AssociationSet>
+          <EntitySet Name="Buildings" EntityType="PeopleProModels.Building" />
+          <AssociationSet Name="BuildingEmployee" Association="PeopleProModels.BuildingEmployee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Building" EntitySet="Buildings" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Department" Relationship="PeopleProModels.EmployeeDepartment" FromRole="Employee" ToRole="Department" />
+          <Property Name="DepartmentDepartmentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Building" Relationship="PeopleProModels.BuildingEmployee" FromRole="Employee" ToRole="Building" />
+          <Property Name="BuildingBuildingId" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="StaffCount" Nullable="true" Type="Int32" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="PeopleProModels.EmployeeDepartment" FromRole="Department" ToRole="Employee" />
+        </EntityType>
+        <Association Name="EmployeeDepartment">
+          <End Type="PeopleProModels.Employee" Role="Employee" Multiplicity="*" />
+          <End Type="PeopleProModels.Department" Role="Department" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DepartmentDepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="BuildingId" />
+          </Key>
+          <Property Name="BuildingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuildingName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Employees" Relationship="PeopleProModels.BuildingEmployee" FromRole="Building" ToRole="Employee" />
+        </EntityType>
+        <Association Name="BuildingEmployee">
+          <End Type="PeopleProModels.Employee" Role="Employee" Multiplicity="*" />
+          <End Type="PeopleProModels.Building" Role="Building" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Building">
+              <PropertyRef Name="BuildingId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="BuildingBuildingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -40,6 +148,26 @@
         <MappingFragment StoreEntitySet="Employees">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DepartmentDepartmentId" ColumnName="DepartmentDepartmentId" />
+          <ScalarProperty Name="BuildingBuildingId" ColumnName="BuildingBuildingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="IsTypeOf(PeopleProModels.Department)">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="StaffCount" ColumnName="StaffCount" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Buildings">
+      <EntityTypeMapping TypeName="IsTypeOf(PeopleProModels.Building)">
+        <MappingFragment StoreEntitySet="Buildings">
+          <ScalarProperty Name="BuildingId" ColumnName="BuildingId" />
+          <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -59,6 +187,7 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

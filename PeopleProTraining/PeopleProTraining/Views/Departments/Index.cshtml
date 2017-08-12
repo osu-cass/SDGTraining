@@ -1,0 +1,69 @@
+﻿@model IEnumerable<PeopleProTraining.Dal.Models.Department>
+
+@{
+    ViewBag.Title = "Index";
+    var department = new PeopleProTraining.Dal.Models.Department();
+    var error = "";
+}
+
+@Html.ValidationSummary(error, new { @class = "text-danger" });
+
+<script type="text/javascript">
+    function CreatePost() {
+        var data = { DepartmentName: document.getElementById("department_DepartmentName").value }
+        $("#DepartmentError").html("");
+        $.ajax({
+            url: "/Departments/CreateAjax",
+            type: 'post',
+            data: data,
+            success: function (result) {
+                $("#department_Table").append(result);
+                $("#department_DepartmentName").val("");
+            },
+            failure: function (request, status, error) {
+                console.log(status);
+                console.log(error);
+            },
+            error: function (request, status, error) {
+                $("#DepartmentError").html(error);
+                console.log(status);
+                console.log(error);
+            }
+        })
+    }
+</script>
+
+<h2>Index</h2>
+
+<div class="form-group">
+    @Html.LabelFor(model => department.DepartmentName, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => department.DepartmentName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => department.DepartmentName, "", new { id = "DepartmentError", @class = "text-danger"})
+    </div>
+
+    <div class="col-md-offset-0 col-md-10">
+        <input type="button" value="Create New" class="btn btn-default" onclick="CreatePost()"/>
+    </div>
+    <br><br>
+</div>
+
+<table class="table" id="department_Table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    @Html.Partial("_DepartmentRow", item);
+}
+
+</table>
