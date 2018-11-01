@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PeopleProDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Building">
+    <Key>
+      <PropertyRef Name="BuildingId" />
+    </Key>
+    <Property Name="BuildingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_dbo_Building_dbo_Department_DepartmentId" FromRole="Building" ToRole="Department" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Buildings" Relationship="Self.FK_dbo_Building_dbo_Department_DepartmentId" FromRole="Department" ToRole="Building" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_dbo_Employee_dbo_Department_DepartmentId" FromRole="Department" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_dbo_Employee_dbo_Department_DepartmentId" FromRole="Employee" ToRole="Department" />
+  </EntityType>
+  <Association Name="FK_dbo_Building_dbo_Department_DepartmentId">
+    <End Role="Department" Type="Self.Department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Building" Type="Self.Building" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Building">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Employee_dbo_Department_DepartmentId">
+    <End Role="Department" Type="Self.Department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PeopleProDataEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Buildings" EntityType="Self.Building" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <AssociationSet Name="FK_dbo_Building_dbo_Department_DepartmentId" Association="Self.FK_dbo_Building_dbo_Department_DepartmentId">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Building" EntitySet="Buildings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Employee_dbo_Department_DepartmentId" Association="Self.FK_dbo_Employee_dbo_Department_DepartmentId">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

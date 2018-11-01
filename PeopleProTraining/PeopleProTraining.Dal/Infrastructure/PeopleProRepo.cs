@@ -40,7 +40,7 @@ namespace PeopleProTraining.Dal.Infrastructure
         }
         public Employee GetEmployee(int id)
         {
-            return GetEmployee(t => t.Id == id);
+            return GetEmployee(t => t.EmployeeId == id);
         }
 
         #endregion

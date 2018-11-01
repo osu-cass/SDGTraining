@@ -51,9 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Employee.cs">
-      <DependentUpon>PeopleProModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Extensions\CacheItem.cs" />
     <Compile Include="Extensions\CacheItemBase.cs" />
     <Compile Include="Extensions\CacheManager.cs" />
@@ -62,54 +59,58 @@
     <Compile Include="Infrastructure\PeopleProRepo.cs" />
     <Compile Include="Interfaces\IPeopleProContext.cs" />
     <Compile Include="Interfaces\IPeopleProRepo.cs" />
-    <Compile Include="Models\Employee.cs" />
-    <Compile Include="PeopleProModels.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PeopleProModels.Context.tt</DependentUpon>
+    <Compile Include="Models\Building.cs">
+      <DependentUpon>PeopleProModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PeopleProModels.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PeopleProModels.tt</DependentUpon>
+    <Compile Include="Models\Department.cs">
+      <DependentUpon>PeopleProModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PeopleProModels.Designer.cs">
+    <Compile Include="Models\Employee.cs">
+      <DependentUpon>PeopleProModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee.Designer.cs">
+      <DependentUpon>Employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PeopleProModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PeopleProModels.edmx</DependentUpon>
-      <CustomToolNamespace>PeopleProTraining.Dal.Models</CustomToolNamespace>
+      <DependentUpon>PeopleProModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PeopleProModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PeopleProModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PeopleProModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PeopleProModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PeopleProModels.Context.tt">
+    <Content Include="Models\PeopleProModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PeopleProModels.Context.cs</LastGenOutput>
-      <DependentUpon>PeopleProModels.edmx</DependentUpon>
-      <CustomToolNamespace>PeopleProTraining.Dal.Models</CustomToolNamespace>
+      <DependentUpon>PeopleProModel.edmx</DependentUpon>
+      <LastGenOutput>PeopleProModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PeopleProModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PeopleProModel.edmx</DependentUpon>
+      <LastGenOutput>PeopleProModel.cs</LastGenOutput>
     </Content>
     <Content Include="PeopleProModels.edmx.sql" />
-    <Content Include="PeopleProModels.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PeopleProModels.cs</LastGenOutput>
-      <DependentUpon>PeopleProModels.edmx</DependentUpon>
-      <CustomToolNamespace>PeopleProTraining.Dal.Models</CustomToolNamespace>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="PeopleProModels.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PeopleProModels.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>PeopleProTraining.Dal.Models</CustomToolNamespace>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="packages.config" />
-    <None Include="PeopleProModels.edmx.diagram">
-      <DependentUpon>PeopleProModels.edmx</DependentUpon>
-      <CustomToolNamespace>PeopleProTraining.Dal.Models</CustomToolNamespace>
+    <EntityDeploy Include="Models\PeopleProModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PeopleProModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\PeopleProModel.edmx.diagram">
+      <DependentUpon>PeopleProModel.edmx</DependentUpon>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
