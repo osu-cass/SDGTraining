@@ -1,4 +1,4 @@
-﻿@model PeopleProTraining.Models.Building
+﻿@model PeopleProTraining.Dal.Models.Building
 
 @{
     ViewBag.Title = "Details";
@@ -11,14 +11,6 @@
     <h4>Building</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Department.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Department.Name)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Address)
         </dt>
@@ -35,9 +27,17 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BuildingId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

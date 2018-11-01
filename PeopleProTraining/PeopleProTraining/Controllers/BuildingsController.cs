@@ -6,13 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using PeopleProTraining.Models;
+using PeopleProTraining.Dal.Models;
 
 namespace PeopleProTraining.Controllers
 {
     public class BuildingsController : Controller
     {
-        private PeopleProContext db = new PeopleProContext();
+        private PeopleProDataEntities db = new PeopleProDataEntities();
 
         // GET: Buildings
         public ActionResult Index()
@@ -39,7 +39,7 @@ namespace PeopleProTraining.Controllers
         // GET: Buildings/Create
         public ActionResult Create()
         {
-            ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Name");
+            ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "Name");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace PeopleProTraining.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,DepartmentID,Address,Name")] Building building)
+        public ActionResult Create([Bind(Include = "BuildingId,Address,Name,DepartmentId")] Building building)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace PeopleProTraining.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Name", building.DepartmentID);
+            ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "Name", building.DepartmentId);
             return View(building);
         }
 
@@ -73,7 +73,7 @@ namespace PeopleProTraining.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Name", building.DepartmentID);
+            ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "Name", building.DepartmentId);
             return View(building);
         }
 
@@ -82,7 +82,7 @@ namespace PeopleProTraining.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,DepartmentID,Address,Name")] Building building)
+        public ActionResult Edit([Bind(Include = "BuildingId,Address,Name,DepartmentId")] Building building)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace PeopleProTraining.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Name", building.DepartmentID);
+            ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "Name", building.DepartmentId);
             return View(building);
         }
 
