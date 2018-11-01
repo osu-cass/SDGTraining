@@ -33,11 +33,11 @@ INSERT ([Address], [Name], [DepartmentId]) VALUES([Address], [Name], [Department
 
 MERGE INTO Employee AS Target
 USING (VALUES
-	(1, 'Drew', 1),
-	(2, 'Max', 2),
-	(3, 'Jeff', 3)
+	(4, 'Drew', 'Ortega', '2018-10-11', 1),
+	(5, 'Max', 'Cooper', '2015-08-17', 2),
+	(6, 'Jeff', 'Chapman', '2013-01-02', 3)
 )
-AS Source (EmployeeId, [FirstName], [DepartmentId])
+AS Source (EmployeeId, [FirstName], [LastName], [EmploymentDate], [DepartmentId])
 ON Target.EmployeeId = Source.EmployeeId
 WHEN NOT MATCHED BY TARGET THEN
-INSERT ([FirstName], [DepartmentId]) VALUES([FirstName], [DepartmentId]);
+INSERT ([FirstName], [LastName], [EmploymentDate], [DepartmentId]) VALUES([FirstName], [LastName], [EmploymentDate], [DepartmentId]);

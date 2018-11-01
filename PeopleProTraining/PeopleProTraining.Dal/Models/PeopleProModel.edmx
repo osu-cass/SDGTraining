@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PeopleProDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PeopleProDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Building">
           <Key>
             <PropertyRef Name="BuildingId" />
@@ -27,6 +27,8 @@
           </Key>
           <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmploymentDate" Type="date" />
           <Property Name="DepartmentId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_Building_dbo_Department_DepartmentId">
@@ -70,8 +72,7 @@
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PeopleProDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -102,6 +103,8 @@
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DepartmentId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="Self.FK_dbo_Employee_dbo_Department_DepartmentId" FromRole="Employee" ToRole="Department" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmploymentDate" Type="DateTime" Precision="0" />
         </EntityType>
         <Association Name="FK_dbo_Building_dbo_Department_DepartmentId">
           <End Role="Department" Type="Self.Department" Multiplicity="1">
@@ -171,6 +174,8 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="PeopleProDataModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmploymentDate" ColumnName="EmploymentDate" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />

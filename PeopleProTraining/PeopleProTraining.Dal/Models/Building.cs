@@ -11,11 +11,14 @@ namespace PeopleProTraining.Dal.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Building
     {
         public int BuildingId { get; set; }
+        [StringLength(50)]
         public string Address { get; set; }
+        [StringLength(50)]
         public string Name { get; set; }
         public int DepartmentId { get; set; }
     

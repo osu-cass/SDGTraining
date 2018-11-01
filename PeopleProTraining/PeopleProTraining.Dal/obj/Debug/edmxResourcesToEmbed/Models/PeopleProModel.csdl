@@ -27,6 +27,8 @@
     <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="DepartmentId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Department" Relationship="Self.FK_dbo_Employee_dbo_Department_DepartmentId" FromRole="Employee" ToRole="Department" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmploymentDate" Type="DateTime" Precision="0" />
   </EntityType>
   <Association Name="FK_dbo_Building_dbo_Department_DepartmentId">
     <End Role="Department" Type="Self.Department" Multiplicity="1">

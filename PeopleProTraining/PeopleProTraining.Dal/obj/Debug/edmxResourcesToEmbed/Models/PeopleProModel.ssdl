@@ -22,6 +22,8 @@
     </Key>
     <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmploymentDate" Type="date" />
     <Property Name="DepartmentId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_dbo_Building_dbo_Department_DepartmentId">
