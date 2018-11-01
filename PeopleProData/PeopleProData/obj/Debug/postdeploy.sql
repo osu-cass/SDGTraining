@@ -41,3 +41,4 @@ AS Source (EmployeeId, [FirstName], [DepartmentId])
 ON Target.EmployeeId = Source.EmployeeId
 WHEN NOT MATCHED BY TARGET THEN
 INSERT ([FirstName], [DepartmentId]) VALUES([FirstName], [DepartmentId]);
+GO
