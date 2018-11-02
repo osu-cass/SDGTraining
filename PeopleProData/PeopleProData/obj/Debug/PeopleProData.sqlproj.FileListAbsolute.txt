@@ -4,7 +4,3 @@ C:\Users\ortegadr\SDGTraining\PeopleProData\PeopleProData\obj\Debug\PeopleProDat
 C:\Users\ortegadr\SDGTraining\PeopleProData\PeopleProData\obj\Debug\PeopleProData.pdb
 C:\Users\ortegadr\SDGTraining\PeopleProData\PeopleProData\bin\Debug\PeopleProData.dll
 C:\Users\ortegadr\SDGTraining\PeopleProData\PeopleProData\bin\Debug\PeopleProData.pdb
-C:\Users\ortegadr\SDGTraining\PeopleProData\PeopleProData\obj\Debug\Model.xml
-C:\Users\ortegadr\SDGTraining\PeopleProData\PeopleProData\obj\Debug\refactor.xml
-C:\Users\ortegadr\SDGTraining\PeopleProData\PeopleProData\obj\Debug\postdeploy.sql
-C:\Users\ortegadr\SDGTraining\PeopleProData\PeopleProData\obj\Debug\predeploy.sql
