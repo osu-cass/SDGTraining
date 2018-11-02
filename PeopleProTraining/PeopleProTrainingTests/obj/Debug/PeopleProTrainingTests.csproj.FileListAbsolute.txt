@@ -48,3 +48,6 @@ C:\Users\ortegadr\SDGTraining\PeopleProTraining\PeopleProTrainingTests\bin\Debug
 C:\Users\ortegadr\SDGTraining\PeopleProTraining\PeopleProTrainingTests\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\ortegadr\SDGTraining\PeopleProTraining\PeopleProTrainingTests\bin\Debug\PeopleProTraining.Core.dll
 C:\Users\ortegadr\SDGTraining\PeopleProTraining\PeopleProTrainingTests\bin\Debug\PeopleProTraining.Core.pdb
+C:\Users\ortegadr\SDGTraining\PeopleProTraining\PeopleProTrainingTests\bin\Debug\nunit.framework.dll
+C:\Users\ortegadr\SDGTraining\PeopleProTraining\PeopleProTrainingTests\bin\Debug\nunit.framework.pdb
+C:\Users\ortegadr\SDGTraining\PeopleProTraining\PeopleProTrainingTests\bin\Debug\nunit.framework.xml

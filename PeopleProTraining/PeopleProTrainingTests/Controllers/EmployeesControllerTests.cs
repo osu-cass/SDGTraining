@@ -75,7 +75,7 @@ namespace PeopleProTraining.Controllers.Tests
             controller.Create(newEmployee);
             var result = controller.Index() as ViewResult;
             var employees = (ICollection<Employee>)result.ViewData.Model;
-            Assert.AreEqual("TestEmployeeName", employees.Last().FirstName); 
+            Assert.AreEqual("TestEmployeeFName", employees.Last().FirstName); 
         }
         public void EditTest()
         {

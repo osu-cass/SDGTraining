@@ -21,7 +21,6 @@ namespace PeopleProTraining.Dal.Models
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        [StringLength(50)]
         public int DepartmentId { get; set; }
 
         [StringLength(50)]
