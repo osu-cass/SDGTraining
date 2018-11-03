@@ -19,15 +19,15 @@ If you are having trouble using git and github to manage this training project, 
   * Pull Request after completing the project
 
 ## Deliverables 
-  * MVC web application with basic crud (Create, Read, Update, and Delete) views
-  * Entity framework models
-  * Model metadata attributes
-  * Relational database for Employees, Departments, and Buildings
-  * Use of display and editor template
-  * Database project
+  * ~~MVC web application with basic crud (Create, Read, Update, and Delete) views~~
+  * ~~Entity framework models~~
+  * ~~Model metadata attributes~~
+  * ~~Relational database for Employees, Departments, and Buildings~~
+  * ~~Use of display and editor template~~
+  * ~~Database project~~
   * AJAX create and append to table for Departments or Buildings
   * Windows security
-  * Testing
+  * ~~Testing~~
 
  ## Issues
   * This project is for training purposes and may contain issues and bugs
