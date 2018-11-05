@@ -58,6 +58,18 @@ namespace PeopleProTraining.Controllers
             return View(department);
         }
 
+        // POST: Departments/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        public ActionResult CreateAJAX([Bind(Include = "DepartmentId,Name")] Department department)
+        {
+            System.Diagnostics.Debug.WriteLine(department.Name);
+            var addedDepartment = db.Departments.Add(department);
+            db.SaveChanges();
+            return Json(addedDepartment, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Departments/Edit/5
         public ActionResult Edit(int? id)
         {

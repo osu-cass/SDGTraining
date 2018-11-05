@@ -7,6 +7,9 @@
 
 <h2>Create</h2>
 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/scripts/Departments.js"></script>
 
 @using (Html.BeginForm()) 
 {
@@ -27,6 +30,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return CreateAJAX();">Create with AJAX</button>
             </div>
         </div>
     </div>
