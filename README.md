@@ -26,7 +26,7 @@ If you are having trouble using git and github to manage this training project, 
   * ~~Use of display and editor template~~
   * ~~Database project~~
   * ~~AJAX create and append to table for Departments or Buildings~~
-  * Windows security
+  * ~~Windows security~~
   * ~~Testing~~
 
  ## Issues
