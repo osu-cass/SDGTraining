@@ -25,7 +25,7 @@ If you are having trouble using git and github to manage this training project, 
   * ~~Relational database for Employees, Departments, and Buildings~~
   * ~~Use of display and editor template~~
   * ~~Database project~~
-  * AJAX create and append to table for Departments or Buildings
+  * ~~AJAX create and append to table for Departments or Buildings~~
   * Windows security
   * ~~Testing~~
 
