@@ -11,7 +11,7 @@
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/scripts/Departments.js"></script>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
 {
     @Html.AntiForgeryToken()
     

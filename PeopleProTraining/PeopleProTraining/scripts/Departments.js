@@ -4,15 +4,19 @@ function CreateAJAX() {
     if (res == false) {
         return false;
     }
+    var form = $('#__AjaxAntiForgeryForm');
+    var token = $('input[name="__RequestVerificationToken"]', form).val();
     var empObj = {
+        __RequestVerificationToken: token,
         DepartmentId: $('#DepartmentId').val(),
         Name: $('#Name').val(),
     };
+    console.log(form);
+    console.log(token);
     $.ajax({
         url: "/Departments/CreateAJAX",
-        data: JSON.stringify(empObj),
+        data: empObj,
         type: "POST",
-        contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
             window.location.href = '/Departments'
