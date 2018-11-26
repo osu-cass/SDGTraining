@@ -1,0 +1,12 @@
+C:\Users\vanhornd\Projects\SDGTraining\PeopleProTraining\PeopleProTraining.Core\bin\Debug\PeopleProTraining.Core.dll
+C:\Users\vanhornd\Projects\SDGTraining\PeopleProTraining\PeopleProTraining.Core\bin\Debug\PeopleProTraining.Core.pdb
+C:\Users\vanhornd\Projects\SDGTraining\PeopleProTraining\PeopleProTraining.Core\bin\Debug\PeopleProTraining.Dal.dll
+C:\Users\vanhornd\Projects\SDGTraining\PeopleProTraining\PeopleProTraining.Core\bin\Debug\EntityFramework.dll
+C:\Users\vanhornd\Projects\SDGTraining\PeopleProTraining\PeopleProTraining.Core\bin\Debug\PeopleProTraining.Dal.pdb
+C:\Users\vanhornd\Projects\SDGTraining\PeopleProTraining\PeopleProTraining.Core\bin\Debug\PeopleProTraining.Dal.dll.config
+C:\Users\vanhornd\Projects\SDGTraining\PeopleProTraining\PeopleProTraining.Core\bin\Debug\EntityFramework.xml
+C:\Users\vanhornd\Projects\SDGTraining\PeopleProTraining\PeopleProTraining.Core\obj\Debug\PeopleProTraining.Core.csprojAssemblyReference.cache
+C:\Users\vanhornd\Projects\SDGTraining\PeopleProTraining\PeopleProTraining.Core\obj\Debug\PeopleProTraining.Core.csproj.CoreCompileInputs.cache
+C:\Users\vanhornd\Projects\SDGTraining\PeopleProTraining\PeopleProTraining.Core\obj\Debug\PeopleProTraining.Core.csproj.CopyComplete
+C:\Users\vanhornd\Projects\SDGTraining\PeopleProTraining\PeopleProTraining.Core\obj\Debug\PeopleProTraining.Core.dll
+C:\Users\vanhornd\Projects\SDGTraining\PeopleProTraining\PeopleProTraining.Core\obj\Debug\PeopleProTraining.Core.pdb
