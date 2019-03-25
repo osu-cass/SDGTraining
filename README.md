@@ -1,25 +1,30 @@
 # CASS Soft Dev Group Training
 
-### People Pro - Microsoft .Net MVC Application with Entity Framework
+### People Pro - Microsoft .Net Core MVC Application with Entity Framework
 
 ## Before you start
 
-Microsoft has a very easy tutorial to follow. We recommend starting there before this training application.
+### Installations
+[Install .NET Core 2.1 SDK or later](https://www.microsoft.com/net/download) 
 
-[ASP.NET Movie DB](http://www.asp.net/mvc/overview/getting-started/introduction/getting-started) 
+### MVC tutorial
+Microsoft has a helpful tutorial to follow. We suggest that you start there before writing your training application. It will define many of the software engineering terms we use and introduce you to building applications in the Microsoft ecosystem.
 
-If you are having trouble using git and github to manage this training project, work through the presentations below or ask for help.
+[ASP.NET Movie DB with Visual Studio 2017](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/?view=aspnetcore-2.1)
+
+### Source Control training
+If you are unfamiliar with git and using github to manage this training project, work through the tutorials below or ask a teammate for help.
 * [What is source control?](http://slides.com/justinc/deck#/)
 * [Learn You a Git](http://slides.com/justinc/learn-you-a-git#/)
 
 ## Where to start
-  * Fork the repo
-  * Pull the repo in Visual Studio 2015/13
+  * Fork the repository
+  * Clone the repository in Visual Studio 2017
   * Read the Deliverables
-  * Pull Request after completing the project
+  * Submit a Pull Request after completing the project
 
 ## Deliverables 
-  * MVC web application with basic crud (Create, Read, Update, and Delete) views
+  * MVC web application with basic CRUD (Create, Read, Update, and Delete) views
   * Entity framework models
   * Model metadata attributes
   * Relational database for Employees, Departments, and Buildings
