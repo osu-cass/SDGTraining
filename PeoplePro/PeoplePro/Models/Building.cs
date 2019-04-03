@@ -7,13 +7,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PeoplePro.Models
 {
-    public class Employee
+    public class Building
     {
         public int ID { get; set; }
 
-        [StringLength(60, MinimumLength = 1), Display(Name = "First Name")]
-        public string FirstName { get; set; }
-
-
+        public string Name { get; set; }
     }
 }

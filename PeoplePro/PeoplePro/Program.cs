@@ -23,7 +23,7 @@ namespace MvcMovie
                 {
                     var context = services.GetRequiredService<PeopleProContext>();
                     context.Database.Migrate();
-                    SeedData.Initialize(services);
+                    //SeedData.Initialize(services);
                 }
                 catch (Exception ex)
                 {

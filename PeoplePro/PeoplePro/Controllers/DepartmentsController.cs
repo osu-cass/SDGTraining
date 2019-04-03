@@ -9,22 +9,23 @@ using PeoplePro.Models;
 
 namespace PeoplePro.Controllers
 {
-    public class EmployeesController : Controller
+    public class DepartmentsController : Controller
     {
         private readonly PeopleProContext _context;
 
-        public EmployeesController(PeopleProContext context)
+        public DepartmentsController(PeopleProContext context)
         {
             _context = context;
         }
 
-        // GET: Employees
+        // GET: Departments
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Employee.ToListAsync());
+            var peopleProContext = _context.Department.Include(d => d.DepartmentHQ);
+            return View(await peopleProContext.ToListAsync());
         }
 
-        // GET: Employees/Details/5
+        // GET: Departments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +33,42 @@ namespace PeoplePro.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employee
+            var department = await _context.Department
+                .Include(d => d.DepartmentHQ)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (employee == null)
+            if (department == null)
             {
                 return NotFound();
             }
 
-            return View(employee);
+            return View(department);
         }
 
-        // GET: Employees/Create
+        // GET: Departments/Create
         public IActionResult Create()
         {
+            ViewData["DepartmentHQID"] = new SelectList(_context.Set<Building>(), "ID", "ID");
             return View();
         }
 
-        // POST: Employees/Create
+        // POST: Departments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,FirstName")] Employee employee)
+        public async Task<IActionResult> Create([Bind("ID,Name,DepartmentHQID")] Department department)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(employee);
+                _context.Add(department);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            ViewData["DepartmentHQID"] = new SelectList(_context.Set<Building>(), "ID", "ID", department.DepartmentHQID);
+            return View(department);
         }
 
-        // GET: Employees/Edit/5
+        // GET: Departments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +76,23 @@ namespace PeoplePro.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employee.FindAsync(id);
-            if (employee == null)
+            var department = await _context.Department.FindAsync(id);
+            if (department == null)
             {
                 return NotFound();
             }
-            return View(employee);
+            ViewData["DepartmentHQID"] = new SelectList(_context.Set<Building>(), "ID", "ID", department.DepartmentHQID);
+            return View(department);
         }
 
-        // POST: Employees/Edit/5
+        // POST: Departments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,FirstName")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,DepartmentHQID")] Department department)
         {
-            if (id != employee.ID)
+            if (id != department.ID)
             {
                 return NotFound();
             }
@@ -96,12 +101,12 @@ namespace PeoplePro.Controllers
             {
                 try
                 {
-                    _context.Update(employee);
+                    _context.Update(department);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmployeeExists(employee.ID))
+                    if (!DepartmentExists(department.ID))
                     {
                         return NotFound();
                     }
@@ -112,10 +117,11 @@ namespace PeoplePro.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            ViewData["DepartmentHQID"] = new SelectList(_context.Set<Building>(), "ID", "ID", department.DepartmentHQID);
+            return View(department);
         }
 
-        // GET: Employees/Delete/5
+        // GET: Departments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +129,31 @@ namespace PeoplePro.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employee
+            var department = await _context.Department
+                .Include(d => d.DepartmentHQ)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (employee == null)
+            if (department == null)
             {
                 return NotFound();
             }
 
-            return View(employee);
+            return View(department);
         }
 
-        // POST: Employees/Delete/5
+        // POST: Departments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var employee = await _context.Employee.FindAsync(id);
-            _context.Employee.Remove(employee);
+            var department = await _context.Department.FindAsync(id);
+            _context.Department.Remove(department);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmployeeExists(int id)
+        private bool DepartmentExists(int id)
         {
-            return _context.Employee.Any(e => e.ID == id);
+            return _context.Department.Any(e => e.ID == id);
         }
     }
 }

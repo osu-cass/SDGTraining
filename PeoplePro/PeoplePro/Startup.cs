@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using PeoplePro.Models;
 
+
 namespace PeoplePro
 {
     public class Startup
@@ -35,6 +36,9 @@ namespace PeoplePro
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<PeopleProContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("PeopleProContext")));
 
             services.AddDbContext<PeopleProContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PeopleProContext")));
