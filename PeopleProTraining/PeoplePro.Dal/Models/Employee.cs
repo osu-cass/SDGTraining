@@ -8,30 +8,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PeoplePro.Dal.Models
 {
-    //[ModelMetadataType(typeof(EmployeeMetaData))]
-    //public partial class Employee
     public class Employee
     {
-        public int Id { get; internal set; }
+        public int Id { get; set; }
+
+        [Required]
         public string FirstName { get; set; }
+
+        [Required]
         public string LastName { get; set; }
+
+        [Required]
         public int Age { get; set; }
+
+        [Required]
         public int DepartmentId { get; set; }  // foreign key
 
+        // the Department this Employee belongs to
+        public virtual Department Department { get; set; }
     }
-    //public class EmployeeMetaData
-    //{
-    //    public int Id;
-
-    //    [Required]
-    //    public string FirstName;
-
-    //    [Required]
-    //    public string LastName;
-
-    //    public string Age;
-
-    //    [Required]
-    //    public int DepartmentId { get; set; }
-    //}
 }

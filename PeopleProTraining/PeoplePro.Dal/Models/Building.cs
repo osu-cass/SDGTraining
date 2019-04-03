@@ -10,7 +10,9 @@ namespace PeoplePro.Dal.Models
 {
     public class Building
     {
-        public int Id { get; internal set; }
+        public int Id { get; set; }
+
+        [Required]
         public string Name { get; set; }
 
         // collection of Departments that locate in this Building

@@ -9,7 +9,7 @@ using PeoplePro.Dal.Infrastructure;
 namespace PeoplePro.Dal.Migrations
 {
     [DbContext(typeof(PeopleProContext))]
-    [Migration("20190403015003_Initial")]
+    [Migration("20190403235944_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,7 +26,8 @@ namespace PeoplePro.Dal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -41,7 +42,8 @@ namespace PeoplePro.Dal.Migrations
 
                     b.Property<int>("BuildingId");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -60,9 +62,11 @@ namespace PeoplePro.Dal.Migrations
 
                     b.Property<int>("DepartmentId");
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("FirstName")
+                        .IsRequired();
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("LastName")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -73,7 +77,7 @@ namespace PeoplePro.Dal.Migrations
 
             modelBuilder.Entity("PeoplePro.Dal.Models.Department", b =>
                 {
-                    b.HasOne("PeoplePro.Dal.Models.Building")
+                    b.HasOne("PeoplePro.Dal.Models.Building", "Building")
                         .WithMany("Departments")
                         .HasForeignKey("BuildingId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -81,7 +85,7 @@ namespace PeoplePro.Dal.Migrations
 
             modelBuilder.Entity("PeoplePro.Dal.Models.Employee", b =>
                 {
-                    b.HasOne("PeoplePro.Dal.Models.Department")
+                    b.HasOne("PeoplePro.Dal.Models.Department", "Department")
                         .WithMany("Employees")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);

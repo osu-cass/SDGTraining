@@ -22,7 +22,8 @@ namespace PeoplePro.Controllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Employees.ToListAsync());
+            var peopleProContext = _context.Employees.Include(e => e.Department);
+            return View(await peopleProContext.ToListAsync());
         }
 
         // GET: Employees/Details/5
@@ -34,6 +35,7 @@ namespace PeoplePro.Controllers
             }
 
             var employee = await _context.Employees
+                .Include(e => e.Department)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (employee == null)
             {
@@ -46,6 +48,7 @@ namespace PeoplePro.Controllers
         // GET: Employees/Create
         public IActionResult Create()
         {
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name");
             return View();
         }
 
@@ -62,6 +65,7 @@ namespace PeoplePro.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name", employee.DepartmentId);
             return View(employee);
         }
 
@@ -78,6 +82,7 @@ namespace PeoplePro.Controllers
             {
                 return NotFound();
             }
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name", employee.DepartmentId);
             return View(employee);
         }
 
@@ -113,6 +118,7 @@ namespace PeoplePro.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name", employee.DepartmentId);
             return View(employee);
         }
 
@@ -125,6 +131,7 @@ namespace PeoplePro.Controllers
             }
 
             var employee = await _context.Employees
+                .Include(e => e.Department)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (employee == null)
             {
