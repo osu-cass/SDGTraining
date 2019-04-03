@@ -33,7 +33,9 @@ namespace PeoplePro
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            var connection = @"Server=CASS-DEV24;Database=PeoplePro;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = @"Server=CASS-DEV10;Database=PeoplePro;Trusted_Connection=True;ConnectRetryCount=0";
+            //var connection = Configuration.GetConnectionString("PeopleProContext");
+            //var connection = @"Server=(localdb)\\mssqllocaldb;Database=PeopleProContext;Trusted_Connection=True;MultipleActiveResultSets=True";
             services.AddDbContext<PeopleProContext>(options => options.UseSqlServer(connection));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

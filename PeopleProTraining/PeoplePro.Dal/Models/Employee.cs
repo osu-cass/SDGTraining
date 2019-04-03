@@ -12,6 +12,9 @@ namespace PeoplePro.Dal.Models
     public partial class Employee
     {
         public int Id { get; internal set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
     }
     public class EmployeeMetaData
     {
@@ -20,6 +23,10 @@ namespace PeoplePro.Dal.Models
         [Required]
         public string FirstName;
 
+        [Required]
+        public string LastName;
+
+        public string Age;
     }
 
 

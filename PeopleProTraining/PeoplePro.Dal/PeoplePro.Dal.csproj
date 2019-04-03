@@ -6,7 +6,15 @@
     <RuntimeFrameworkVersion>2.1.0</RuntimeFrameworkVersion>
   </PropertyGroup>
 
+
   <ItemGroup>
+    <Compile Remove="Migrations\20190402235722_Initial.cs" />
+    <Compile Remove="Migrations\20190403000705_Initial.cs" />
+    <Compile Remove="Migrations\20190403000802_Initial.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
   </ItemGroup>
