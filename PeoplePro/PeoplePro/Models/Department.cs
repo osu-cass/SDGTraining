@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace PeoplePro.Models
 {
-    public class Building
+    public class Department
     {
         public int Id { get; set; }
-    
-        public List<Department> Departments;
 
-        public string Name { get; set; } 
+        public List<Employee> Employees;
 
-        public string Address { get; set; } 
+        public string Name { get; set; }
+
+        public string Building { get; set; }
     }
 }

@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PeoplePro.Models;
 
 namespace PeoplePro.Migrations
 {
     [DbContext(typeof(PeopleProContext))]
-    partial class PeopleProContextModelSnapshot : ModelSnapshot
+    [Migration("20190403203050_Building")]
+    partial class Building
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,21 +33,6 @@ namespace PeoplePro.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Building");
-                });
-
-            modelBuilder.Entity("PeoplePro.Models.Department", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Building");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Department");
                 });
 
             modelBuilder.Entity("PeoplePro.Models.Employee", b =>
