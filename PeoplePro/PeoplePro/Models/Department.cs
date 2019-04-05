@@ -13,9 +13,10 @@ namespace PeoplePro.Models
 
         public string Name { get; set; }
 
-        public int DepartmentHQID { get; set; }
+        [ForeignKey("BuildingID")]
+        public int BuildingID { get; set; }
 
-        public virtual Building DepartmentHQ { get; set; }
+        public virtual Building Building { get; set; }
 
         public virtual ICollection<Employee> Employees { get; set; }
     }

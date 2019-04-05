@@ -14,9 +14,15 @@ namespace PeoplePro.Models
         [StringLength(60, MinimumLength = 1), Display(Name = "First Name")]
         public string FirstName { get; set; }
 
+        [ForeignKey("DepartmentID")]
         public int DepartmentID { get; set; }
 
+        [ForeignKey("BuildingID")]
         public int BuildingID { get; set; }
+
+        public virtual Building Building { get; set; }
+
+        public virtual Department Department { get; set; }
 
     }
 }

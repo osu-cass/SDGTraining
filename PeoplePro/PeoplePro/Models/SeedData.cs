@@ -13,22 +13,38 @@ namespace PeoplePro.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<PeopleProContext>>()))
             {
-                // Look for any Employee.
-                if (context.Employee.Any())
+                // Look for any Employee/Department/ID.
+                if (context.Employee.Any() || context.Department.Any() || context.Department.Any())
                 {
                     return;   // DB has been seeded
                 }
 
-                if (context.Building.Any())
-                {
-                    return;
-                }
+                context.Department.AddRange(
+                   new Department
+                   {
+                       Name = "Mushroom",
+                       BuildingID = 1
+                   },
+                   new Department
+                   {
+                       Name = "Hyrule",
+                       BuildingID = 2
+                   },
+                   new Department
+                   {
+                       Name = "Dream Land",
+                       BuildingID = 1
+                   }
+                );
 
                 context.Building.AddRange(
                     new Building
                     {
+                        Name = "Castle",
+                    },
+                    new Building
+                    {
                         Name = "Temple",
-                        DepartmentID = 1
                     }
                 );
 
@@ -42,27 +58,27 @@ namespace PeoplePro.Models
 
                     new Employee
                     {
-                        FirstName = "Robin",
+                        FirstName = "Link",
                         DepartmentID = 2,
-                        BuildingID = 1
+                        BuildingID = 2
                     },
 
                     new Employee
                     {
                         FirstName = "Tetra",
                         DepartmentID = 2,
-                        BuildingID = 1
+                        BuildingID = 2
                     },
 
                     new Employee
                     {
-                        FirstName = "Roy",
+                        FirstName = "Kirby",
                         DepartmentID = 3,
-                        BuildingID = 3
+                        BuildingID = 1
                     }
                 );
 
-
+                
                 context.SaveChanges();
             }
         }
