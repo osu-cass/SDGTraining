@@ -40,8 +40,8 @@ namespace PeoplePro
             services.AddDbContext<PeopleProContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PeopleProContext")));
 
-            services.AddDbContext<PeopleProContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("PeopleProContext")));
+            /***services.AddDbContext<PeopleProContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("PeopleProContext")));***/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using PeoplePro.Models;
 using PeoplePro;
 
-namespace MvcMovie
+namespace PeoplePro
 {
     public class Program
     {
