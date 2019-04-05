@@ -1,12 +1,12 @@
 ﻿@model PeoplePro.Models.Department
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Building";
 }
 
 <h1>Create</h1>
 
-<h4>Department</h4>
+<h4>New Department Entry</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,6 +24,9 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-controller="Buildings" asp-action="Create">Create an Entry for a Building</a>
             </div>
         </form>
     </div>

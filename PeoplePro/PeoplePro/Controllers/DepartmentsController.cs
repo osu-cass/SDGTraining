@@ -72,6 +72,15 @@ namespace PeoplePro.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Building")] Department department)
         {
+            var BuildingQuery = from b in _context.Building
+                                  select b;
+            var BuildCheck = BuildingQuery.Where(s => s.Name == department.Building);
+
+
+            if ((!BuildCheck.Any()))
+            {
+                ModelState.AddModelError("Building", "Please enter an existing building");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(department);
