@@ -9,11 +9,11 @@ using PeoplePro.Models;
 
 namespace PeoplePro.Controllers
 {
-    public class BuildingsController : Controller
+    public class BuildingController : Controller
     {
         private readonly PeopleProContext _context;
 
-        public BuildingsController(PeopleProContext context)
+        public BuildingController(PeopleProContext context)
         {
             _context = context;
         }

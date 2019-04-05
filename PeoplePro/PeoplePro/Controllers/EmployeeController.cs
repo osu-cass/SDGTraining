@@ -9,11 +9,11 @@ using PeoplePro.Models;
 
 namespace PeoplePro.Controllers
 {
-    public class EmployeesController : Controller
+    public class EmployeeController : Controller
     {
         private readonly PeopleProContext _context;
 
-        public EmployeesController(PeopleProContext context)
+        public EmployeeController(PeopleProContext context)
         {
             _context = context;
         }
@@ -53,7 +53,7 @@ namespace PeoplePro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,FirstName")] Employee employee)
+        public async Task<IActionResult> Create([Bind("ID,FirstName,BuildingID,DepartmentID")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace PeoplePro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,FirstName")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,FirstName,BuildingID,DepartmentID")] Employee employee)
         {
             if (id != employee.ID)
             {

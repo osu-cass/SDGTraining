@@ -13,7 +13,6 @@ namespace PeoplePro.Models
 
         public string Name { get; set; }
 
-        [ForeignKey("BuildingID")]
         public int DepartmentHQID { get; set; }
 
         public virtual Building DepartmentHQ { get; set; }

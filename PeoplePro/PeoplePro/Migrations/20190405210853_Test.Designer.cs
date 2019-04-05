@@ -10,8 +10,8 @@ using PeoplePro.Models;
 namespace PeoplePro.Migrations
 {
     [DbContext(typeof(PeopleProContext))]
-    [Migration("20190403223657_Init")]
-    partial class Init
+    [Migration("20190405210853_Test")]
+    partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,6 +26,8 @@ namespace PeoplePro.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DepartmentID");
 
                     b.Property<string>("Name");
 
@@ -42,11 +44,13 @@ namespace PeoplePro.Migrations
 
                     b.Property<int>("DepartmentHQID");
 
+                    b.Property<int?>("DepartmentHQID1");
+
                     b.Property<string>("Name");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("DepartmentHQID");
+                    b.HasIndex("DepartmentHQID1");
 
                     b.ToTable("Department");
                 });
@@ -57,7 +61,7 @@ namespace PeoplePro.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("DepartmentID");
+                    b.Property<int>("DepartmentID");
 
                     b.Property<string>("FirstName")
                         .HasMaxLength(60);
@@ -73,15 +77,15 @@ namespace PeoplePro.Migrations
                 {
                     b.HasOne("PeoplePro.Models.Building", "DepartmentHQ")
                         .WithMany()
-                        .HasForeignKey("DepartmentHQID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DepartmentHQID1");
                 });
 
             modelBuilder.Entity("PeoplePro.Models.Employee", b =>
                 {
                     b.HasOne("PeoplePro.Models.Department")
                         .WithMany("Employees")
-                        .HasForeignKey("DepartmentID");
+                        .HasForeignKey("DepartmentID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

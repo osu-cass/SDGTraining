@@ -14,6 +14,9 @@ namespace PeoplePro.Models
         [StringLength(60, MinimumLength = 1), Display(Name = "First Name")]
         public string FirstName { get; set; }
 
+        public int DepartmentID { get; set; }
+
+        public int BuildingID { get; set; }
 
     }
 }
