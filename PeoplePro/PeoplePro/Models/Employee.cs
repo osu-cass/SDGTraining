@@ -11,6 +11,7 @@ namespace PeoplePro.Models
         public int Id { get; set; }
         [Required]
         [Display(Name = "First Name")]
+        [StringLength(20)]
         public string FirstName { get; set; }
         [Required]
         [Display(Name = "Last Name")]

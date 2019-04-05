@@ -127,6 +127,15 @@ namespace PeoplePro.Controllers
             {
                 return NotFound();
             }
+            var DepartmentQuery = from b in _context.Department
+                                  select b;
+            var DepCheck = DepartmentQuery.Where(s => s.Name == employee.Department);
+
+
+            if ((!DepCheck.Any()))
+            {
+                ModelState.AddModelError("Department", "Please enter an existing department");
+            }
 
             if (ModelState.IsValid)
             {
