@@ -12669,11 +12669,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\luuph\\Source\\Repos\\philectron\\SDGTraining\\PeopleProTraining\\PeoplePro\\PeoplePro.csproj",
+      "projectUniqueName": "C:\\Users\\luuph\\source\\repos\\philectron\\SDGTraining\\PeopleProTraining\\PeoplePro\\PeoplePro.csproj",
       "projectName": "PeoplePro",
-      "projectPath": "C:\\Users\\luuph\\Source\\Repos\\philectron\\SDGTraining\\PeopleProTraining\\PeoplePro\\PeoplePro.csproj",
+      "projectPath": "C:\\Users\\luuph\\source\\repos\\philectron\\SDGTraining\\PeopleProTraining\\PeoplePro\\PeoplePro.csproj",
       "packagesPath": "C:\\Users\\luuph\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\luuph\\Source\\Repos\\philectron\\SDGTraining\\PeopleProTraining\\PeoplePro\\obj\\",
+      "outputPath": "C:\\Users\\luuph\\source\\repos\\philectron\\SDGTraining\\PeopleProTraining\\PeoplePro\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12692,8 +12692,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\luuph\\Source\\Repos\\philectron\\SDGTraining\\PeopleProTraining\\PeoplePro.Dal\\PeoplePro.Dal.csproj": {
-              "projectPath": "C:\\Users\\luuph\\Source\\Repos\\philectron\\SDGTraining\\PeopleProTraining\\PeoplePro.Dal\\PeoplePro.Dal.csproj"
+            "C:\\Users\\luuph\\source\\repos\\philectron\\SDGTraining\\PeopleProTraining\\PeoplePro.Dal\\PeoplePro.Dal.csproj": {
+              "projectPath": "C:\\Users\\luuph\\source\\repos\\philectron\\SDGTraining\\PeopleProTraining\\PeoplePro.Dal\\PeoplePro.Dal.csproj"
             }
           }
         }

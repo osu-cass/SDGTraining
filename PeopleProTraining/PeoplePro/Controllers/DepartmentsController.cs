@@ -19,11 +19,25 @@ namespace PeoplePro.Controllers
             _context = context;
         }
 
-        // GET: Departments
-        public async Task<IActionResult> Index()
+        //// GET: Departments
+        //public async Task<IActionResult> Index()
+        //{
+        //    var peopleProContext = _context.Departments.Include(d => d.Building);
+        //    return View(await peopleProContext.ToListAsync());
+        //}
+
+        // GET: Departmemnts
+        public async Task<IActionResult> Index(string searchString)
         {
-            var peopleProContext = _context.Departments.Include(d => d.Building);
-            return View(await peopleProContext.ToListAsync());
+            var departments = from d in _context.Departments
+                              select d;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                departments = departments.Where(s => s.Name.Contains(searchString));
+            }
+
+            return View(await departments.ToListAsync());
         }
 
         // GET: Departments/Details/5
