@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>DatabaseProject</Name>
+    <Name>PeopleProDatabase</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{a1e9813e-6f49-49c9-a8ca-1ea93d814ce0}</ProjectGuid>
+    <ProjectGuid>{daffdd97-5e22-44ff-aad9-eab0157d6d27}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>DatabaseProject</RootNamespace>
-    <AssemblyName>DatabaseProject</AssemblyName>
+    <RootNamespace>PeopleProDatabase</RootNamespace>
+    <AssemblyName>PeopleProDatabase</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -59,9 +59,9 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Departments.sql" />
     <Build Include="Employees.sql" />
     <Build Include="Buildings.sql" />
+    <Build Include="Departments.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment1.sql" />
