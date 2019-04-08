@@ -48,6 +48,7 @@ namespace PeoplePro.Controllers
         public IActionResult Create()
         {
             ViewData["BuildingID"] = new SelectList(_context.Set<Building>(), "ID", "ID");
+            ViewBag.Building = new SelectList(_context.Set<Building>(), "Name", "Name");
             return View();
         }
 
@@ -65,6 +66,7 @@ namespace PeoplePro.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BuildingID"] = new SelectList(_context.Set<Building>(), "ID", "ID", department.BuildingID);
+            ViewBag.Department = new SelectList(_context.Set<Building>(), "Name", "Name", department.Building);
             return View(department);
         }
 
@@ -82,6 +84,7 @@ namespace PeoplePro.Controllers
                 return NotFound();
             }
             ViewData["BuildingID"] = new SelectList(_context.Set<Building>(), "ID", "ID", department.BuildingID);
+            ViewBag.Building = new SelectList(_context.Set<Building>(), "Name", "Name", department.Building);
             return View(department);
         }
 
@@ -117,7 +120,7 @@ namespace PeoplePro.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BuildingID"] = new SelectList(_context.Set<Building>(), "ID", "ID", department.BuildingID);
+            ViewData["BuildingID"] = new SelectList(_context.Set<Building>(), "ID", "ID", department.Building);
             return View(department);
         }
 

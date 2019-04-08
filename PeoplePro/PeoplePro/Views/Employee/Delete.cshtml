@@ -14,20 +14,20 @@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DepartmentID)
-        </dt>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BuildingID)
-        </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.FirstName)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Department.ID)
+            @Html.DisplayFor(model => model.Department.Name)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Building)
+        </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Building.ID)
+            @Html.DisplayFor(model => model.Building.Name)
         </dd>
     </dl>
     
