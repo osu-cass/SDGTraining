@@ -9,7 +9,7 @@ using PeoplePro.Dal.Infrastructure;
 namespace PeoplePro.Dal.Migrations
 {
     [DbContext(typeof(PeopleProContext))]
-    [Migration("20190403235944_Initial")]
+    [Migration("20190408231340_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,8 @@ namespace PeoplePro.Dal.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(60);
 
                     b.HasKey("Id");
 
@@ -43,7 +44,8 @@ namespace PeoplePro.Dal.Migrations
                     b.Property<int>("BuildingId");
 
                     b.Property<string>("Name")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(60);
 
                     b.HasKey("Id");
 
@@ -63,10 +65,12 @@ namespace PeoplePro.Dal.Migrations
                     b.Property<int>("DepartmentId");
 
                     b.Property<string>("FirstName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<string>("LastName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 

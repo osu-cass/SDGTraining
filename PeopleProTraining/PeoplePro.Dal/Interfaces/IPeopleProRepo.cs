@@ -9,16 +9,10 @@ namespace PeoplePro.Dal.Interfaces
 {
     public interface IPeopleProRepo
     {
-        #region access
-
-        #region employees
         IQueryable<Employee> GetEmployees();
         IEnumerable<Employee> GetEmployees(Func<Employee, bool> predicate);
 
         Employee GetEmployee(Func<Employee, bool> predicate);
         Employee GetEmployee(int id);
-        #endregion
-        #endregion
-
     }
 }
