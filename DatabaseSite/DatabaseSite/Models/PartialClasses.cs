@@ -10,14 +10,12 @@ namespace DatabaseSite.Models
     public partial class Employee
     {
     }
-
-    [MetadataType(typeof(BuildingMetadata))]
-    public partial class Building
-    {
-    }
-
     [MetadataType(typeof(DepartmentMetadata))]
     public partial class Department
+    {
+    }
+    [MetadataType(typeof(BuildingMetadata))]
+    public partial class Building
     {
     }
 }

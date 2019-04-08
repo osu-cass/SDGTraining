@@ -57,6 +57,11 @@ namespace DatabaseSite.Controllers
 
             return View(department);
         }
+        public ActionResult AddDepartment()
+        {
+
+            return PartialView("TestPartial");
+        }
 
         // GET: Departments/Edit/5
         public ActionResult Edit(int? id)
