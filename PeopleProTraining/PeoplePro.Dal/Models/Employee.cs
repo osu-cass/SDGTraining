@@ -12,12 +12,15 @@ namespace PeoplePro.Dal.Models
     {
         public int Id { get; set; }
 
+        [StringLength(50)]
         [Required]
         public string FirstName { get; set; }
 
+        [StringLength(50)]
         [Required]
         public string LastName { get; set; }
 
+        [Range(1, 150)]
         [Required]
         public int Age { get; set; }
 
