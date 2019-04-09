@@ -31,14 +31,6 @@
     </div>
 }
 
-@Ajax.ActionLink("Add Department", "AddDepartment", "Departments",
-                new AjaxOptions() { HttpMethod = "GET", OnSuccess = "success" });
-
-<script type="text/javacript">
-    function success(data) {
-    alert(data);
-    }
-</script>
 
 <div>
     @Html.ActionLink("Back to List", "Index")

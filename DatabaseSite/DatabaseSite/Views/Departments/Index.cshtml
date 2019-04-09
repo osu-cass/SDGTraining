@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table" id="DepTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -17,17 +17,41 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DepartmentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DepartmentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DepartmentId })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        @Html.Partial("~/Views/Shared/Partials/DepartmentPartial.cshtml", item);
+    }
 </table>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+
+<div>
+    <form>
+        Department Name<br>
+        <input type="text" id="NewName">
+    </form>
+</div>
+
+<div>
+    <button id="AddButton">Click Me!</button>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#AddButton").click(function () {
+            var a = $("#NewName").val();
+            alert(a);
+            $.ajax({
+                url: "../../AjaxTest/FirstAjax",
+                type: "POST",
+                data: {name: a},
+                success: function (response) {
+                    $("#DepTable tr:last").after(response);
+                },
+                error: function (response) {
+                    alert(response.Name);
+                }
+            });
+        });
+    });
+</script>

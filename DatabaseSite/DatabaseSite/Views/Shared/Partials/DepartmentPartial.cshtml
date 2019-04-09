@@ -1,0 +1,13 @@
+﻿@model DatabaseSite.Models.Department
+
+
+<tr>
+    <td>
+        @Html.DisplayFor(Model => Model.Name)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.DepartmentId }) |
+        @Html.ActionLink("Details", "Details", new { id = Model.DepartmentId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.DepartmentId })
+    </td>
+</tr>

@@ -238,8 +238,9 @@
     <Content Include="Views\Departments\Details.cshtml" />
     <Content Include="Views\Departments\Edit.cshtml" />
     <Content Include="Views\Departments\Index.cshtml" />
-    <Content Include="Views\Shared\TestPartial.cshtml" />
+    <Content Include="Views\Shared\Partials\DepartmentPartial.cshtml" />
     <Content Include="Views\AjaxTest\Index.cshtml" />
+    <Content Include="Views\Shared\Partials\CreateDepartmentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,19 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
+using System.Data.Entity;
+using System.Net;
+using DatabaseSite.Models;
 
 namespace DatabaseSite.Controllers
 {
     public class AjaxTestController : Controller
     {
+        private PeopleProDatabaseEntities db = new PeopleProDatabaseEntities();
         public ActionResult Index()
         {
             return View();
         }
-
-        public ActionResult FirstAjax(string a)
+        [HttpPost]
+        public ActionResult FirstAjax(string name)
         {
-            return Json("chamara", JsonRequestBehavior.AllowGet);
+
+
+            var dep = new Department()
+            {
+                Name = name,
+                DepartmentId = db.Departments.Count()
+            };
+
+
+            db.Departments.Add(dep);
+            db.SaveChanges();
+
+            return PartialView("~/Views/Shared/Partials/DepartmentPartial.cshtml", dep);
+            //return Json(dep, JsonRequestBehavior.AllowGet);
         }
     }
 }
