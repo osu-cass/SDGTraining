@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Net;
 using DatabaseSite.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace DatabaseSite.Controllers
 {
@@ -21,17 +22,24 @@ namespace DatabaseSite.Controllers
         public ActionResult FirstAjax(string name)
         {
 
-
-            var dep = new Department()
+            
+            var dep = new Department
             {
                 Name = name,
                 DepartmentId = db.Departments.Count()
             };
 
-            db.Departments.Add(dep);
-            db.SaveChanges();
+            if(TryValidateModel(dep))
+            {
 
-            return PartialView("~/Views/Shared/Partials/DepartmentPartial.cshtml", dep);
+                db.Departments.Add(dep);
+                db.SaveChanges();
+                return PartialView("~/Views/Shared/Partials/DepartmentPartial.cshtml", dep);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             //return Json(dep, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]

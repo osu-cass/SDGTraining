@@ -50,7 +50,7 @@
                     $("#CreateForm").remove();
                 },
                 error: function (response) {
-                    alert(response.Name);
+                    alert("Invalid field entry for new department");
                 }
             });
         });
@@ -67,6 +67,10 @@
                     alert("there was an error");
                 }
             });
+        });
+        $(document).on('click', '#CancelButton', function () {
+            $("#CreateForm").after("<div> <button id = 'OpenButton'>Open Me!</button> </div>");
+            $("#CreateForm").remove();
         });
     });
 </script>
