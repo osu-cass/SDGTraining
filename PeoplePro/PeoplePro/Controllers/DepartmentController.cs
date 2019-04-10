@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PeoplePro.Filters;
 using PeoplePro.Models;
 
 namespace PeoplePro.Controllers
@@ -125,6 +126,7 @@ namespace PeoplePro.Controllers
         }
 
         // GET: Departments/Delete/5
+        [ServiceFilter(typeof(DeleteDepartmentFilter))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

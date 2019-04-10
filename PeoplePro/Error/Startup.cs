@@ -9,11 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using PeoplePro.Models;
-using PeoplePro.Filters;
 
-namespace PeoplePro
+namespace Error
 {
     public class Startup
     {
@@ -34,18 +31,8 @@ namespace PeoplePro
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            services.AddScoped<DeleteBuildingFilter>();
-            services.AddScoped<DeleteDepartmentFilter>();
-
-            services.AddDbContext<PeopleProContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("PeopleProContext")));
-
-            /***services.AddDbContext<PeopleProContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("PeopleProContext")));***/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
