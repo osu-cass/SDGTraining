@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace DatabaseSite.Controllers
 {
+    //[Authorize(Users ="swanscol")]
     public class HomeController : Controller
     {
         public ActionResult Index()

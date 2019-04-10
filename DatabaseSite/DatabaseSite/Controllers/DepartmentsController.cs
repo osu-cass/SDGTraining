@@ -30,7 +30,8 @@ namespace DatabaseSite.Controllers
             Department department = db.Departments.Find(id);
             if (department == null)
             {
-                return HttpNotFound();
+                return HttpNotFound("Not a vaild Id");
+            
             }
             return View(department);
         }

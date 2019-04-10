@@ -27,14 +27,8 @@
 
 
 <div>
-    <button id="OpenButton">Open Me!</button>
+    <button id="OpenButton" class="btn btn-default" >Open Me!</button>
 </div>
-<!---<form>
-    <input id="DepData" name=" Department Name">
-</form>
-<div>
-    <button id="AddButton">Create Department</button>
-</div>-->
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -46,7 +40,7 @@
                 data: { name: a },
                 success: function (response) {
                     $("#DepTable tr:last").after(response);
-                    $("#CreateForm").after("<div> <button id = 'OpenButton'>Open Me!</button> </div>");
+                    $("#CreateForm").after("<div> <button id = 'OpenButton' class='btn btn-default'>Open Me!</button> </div>");
                     $("#CreateForm").remove();
                 },
                 error: function (response) {
@@ -69,7 +63,7 @@
             });
         });
         $(document).on('click', '#CancelButton', function () {
-            $("#CreateForm").after("<div> <button id = 'OpenButton'>Open Me!</button> </div>");
+            $("#CreateForm").after("<div> <button id = 'OpenButton' class='btn btn-default'>Open Me!</button> </div>");
             $("#CreateForm").remove();
         });
     });

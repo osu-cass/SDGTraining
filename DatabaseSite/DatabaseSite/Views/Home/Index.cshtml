@@ -8,9 +8,12 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
-<div>
+<h1>
     @Html.ActionLink("Link to Database", "Index", "Employees")
-</div>
+</h1>
+<p>
+    Logged in as @User.Identity.Name
+</p>
 <div class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>

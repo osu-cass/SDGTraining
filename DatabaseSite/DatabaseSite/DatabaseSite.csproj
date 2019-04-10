@@ -242,6 +242,9 @@
     <Content Include="Views\AjaxTest\Index.cshtml" />
     <Content Include="Views\Shared\Partials\CreateDepartmentPartial.cshtml" />
     <Content Include="Views\Shared\Partials\TestingPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Employee.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Department.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Building.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
