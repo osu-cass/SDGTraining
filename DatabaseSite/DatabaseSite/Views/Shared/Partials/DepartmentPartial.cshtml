@@ -6,8 +6,8 @@
         @Html.DisplayFor(Model => Model.Name)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.DepartmentId }) |
-        @Html.ActionLink("Details", "Details", new { id = Model.DepartmentId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = Model.DepartmentId })
+        @Html.ActionLink("Edit", "Edit", "Departments", new { id = Model.DepartmentId }, null) |
+        @Html.ActionLink("Details", "Details", "Departments", new { id = Model.DepartmentId }, null) |
+        @Html.ActionLink("Delete", "Delete", "Departments", new { id = Model.DepartmentId }, null)
     </td>
 </tr>

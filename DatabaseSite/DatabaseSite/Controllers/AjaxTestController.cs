@@ -28,12 +28,16 @@ namespace DatabaseSite.Controllers
                 DepartmentId = db.Departments.Count()
             };
 
-
             db.Departments.Add(dep);
             db.SaveChanges();
 
             return PartialView("~/Views/Shared/Partials/DepartmentPartial.cshtml", dep);
             //return Json(dep, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult CreatePrompt()
+        {
+            return PartialView("~/Views/Shared/Partials/CreateDepartmentPartial.cshtml");
         }
     }
 }

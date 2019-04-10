@@ -21,6 +21,7 @@ namespace DatabaseSite.Models
     {
         [Required]
         [Display(Name = "Department")]
+        [RegularExpression(@"^[a-zA-Z""'\s-]*$")]
         public string Name;
     }
 

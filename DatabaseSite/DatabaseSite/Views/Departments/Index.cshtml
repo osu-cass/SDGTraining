@@ -27,29 +27,44 @@
 
 
 <div>
-    <form>
-        Department Name<br>
-        <input type="text" id="NewName">
-    </form>
+    <button id="OpenButton">Open Me!</button>
 </div>
-
+<!---<form>
+    <input id="DepData" name=" Department Name">
+</form>
 <div>
-    <button id="AddButton">Click Me!</button>
-</div>
+    <button id="AddButton">Create Department</button>
+</div>-->
+
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#AddButton").click(function () {
-            var a = $("#NewName").val();
-            alert(a);
+          $(document).on('click', '#AddButton', function () {
+            var a = $("#DepNameInput").val();
             $.ajax({
                 url: "../../AjaxTest/FirstAjax",
                 type: "POST",
-                data: {name: a},
+                data: { name: a },
                 success: function (response) {
                     $("#DepTable tr:last").after(response);
+                    $("#CreateForm").after("<div> <button id = 'OpenButton'>Open Me!</button> </div>");
+                    $("#CreateForm").remove();
                 },
                 error: function (response) {
                     alert(response.Name);
+                }
+            });
+        });
+        $(document).on('click', '#OpenButton', function () {
+            var b = $(this);
+            $.ajax({
+                url: "../../AjaxTest/CreatePrompt",
+                type: "GET",
+                success: function (response) {
+                    $("#OpenButton").after(response);
+                    b.remove();
+                },
+                error: function (response) {
+                    alert("there was an error");
                 }
             });
         });
