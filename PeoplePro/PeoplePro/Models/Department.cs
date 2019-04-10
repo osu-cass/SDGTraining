@@ -9,8 +9,9 @@ namespace PeoplePro.Models
 {
     public class Department
     {
-        public int ID { get; set; }
 
+        public int ID { get; set; }
+        [Required]
         public string Name { get; set; }
 
         [ForeignKey("BuildingID")]
@@ -18,6 +19,7 @@ namespace PeoplePro.Models
 
         public virtual Building Building { get; set; }
 
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Employee> Employees {get; set;}
+
     }
 }

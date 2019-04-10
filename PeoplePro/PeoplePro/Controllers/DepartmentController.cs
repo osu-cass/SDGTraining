@@ -21,7 +21,7 @@ namespace PeoplePro.Controllers
         // GET: Departments
         public async Task<IActionResult> Index()
         {
-            var peopleProContext = _context.Department.Include(d => d.Building);
+            var peopleProContext = _context.Department.Include(d => d.Building).Include(d => d.Employees);
             return View(await peopleProContext.ToListAsync());
         }
 
@@ -48,7 +48,7 @@ namespace PeoplePro.Controllers
         public IActionResult Create()
         {
             ViewData["BuildingID"] = new SelectList(_context.Set<Building>(), "ID", "ID");
-            ViewBag.Building = new SelectList(_context.Set<Building>(), "Name", "Name");
+            ViewBag.Building = new SelectList(_context.Set<Building>(), "ID", "Name");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace PeoplePro.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BuildingID"] = new SelectList(_context.Set<Building>(), "ID", "ID", department.BuildingID);
-            ViewBag.Department = new SelectList(_context.Set<Building>(), "Name", "Name", department.Building);
+            ViewBag.Building = new SelectList(_context.Set<Building>(), "ID", "Name", department.Building);
             return View(department);
         }
 
@@ -84,7 +84,7 @@ namespace PeoplePro.Controllers
                 return NotFound();
             }
             ViewData["BuildingID"] = new SelectList(_context.Set<Building>(), "ID", "ID", department.BuildingID);
-            ViewBag.Building = new SelectList(_context.Set<Building>(), "Name", "Name", department.Building);
+            ViewBag.Building = new SelectList(_context.Set<Building>(), "ID", "Name", department.Building);
             return View(department);
         }
 

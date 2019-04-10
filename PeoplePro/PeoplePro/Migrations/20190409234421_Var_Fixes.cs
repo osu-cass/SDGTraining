@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using PeoplePro.Models;
 
 namespace PeoplePro.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Var_Fixes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,17 +31,17 @@ namespace PeoplePro.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    DepartmentHQID = table.Column<int>(nullable: false)
+                    BuildingID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Department", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Department_Building_DepartmentHQID",
-                        column: x => x.DepartmentHQID,
+                        name: "FK_Department_Building_BuildingID",
+                        column: x => x.BuildingID,
                         principalTable: "Building",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -47,11 +51,18 @@ namespace PeoplePro.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FirstName = table.Column<string>(maxLength: 60, nullable: true),
-                    DepartmentID = table.Column<int>(nullable: true)
+                    DepartmentID = table.Column<int>(nullable: false),
+                    BuildingID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employee", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Employee_Building_BuildingID",
+                        column: x => x.BuildingID,
+                        principalTable: "Building",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Employee_Department_DepartmentID",
                         column: x => x.DepartmentID,
@@ -61,9 +72,14 @@ namespace PeoplePro.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Department_DepartmentHQID",
+                name: "IX_Department_BuildingID",
                 table: "Department",
-                column: "DepartmentHQID");
+                column: "BuildingID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employee_BuildingID",
+                table: "Employee",
+                column: "BuildingID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employee_DepartmentID",

@@ -21,7 +21,8 @@ namespace PeoplePro.Controllers
         // GET: Buildings
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Building.ToListAsync());
+            var peopleProContext = _context.Building.Include(d => d.Departments);
+            return View(await peopleProContext.ToListAsync());
         }
 
         // GET: Buildings/Details/5
@@ -124,7 +125,15 @@ namespace PeoplePro.Controllers
             }
 
             var building = await _context.Building
+                .Include(d => d.Departments)
                 .FirstOrDefaultAsync(m => m.ID == id);
+
+            if(building.Departments.Count != 0)
+            {
+                ModelState.AddModelError("Error", "The building can not be deleted until it doesn't have any departments");
+                return View();
+            }
+
             if (building == null)
             {
                 return NotFound();

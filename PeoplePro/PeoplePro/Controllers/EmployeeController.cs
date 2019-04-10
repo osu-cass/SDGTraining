@@ -50,8 +50,8 @@ namespace PeoplePro.Controllers
         {
             ViewData["DepartmentID"] = new SelectList(_context.Set<Department>(), "ID", "ID");
             ViewData["BuildingID"] = new SelectList(_context.Set<Building>(), "ID", "ID");
-            ViewBag.Building = new SelectList(_context.Set<Building>(), "Name", "Name");
-            ViewBag.Department = new SelectList(_context.Set<Department>(), "Name", "Name");
+            ViewBag.Building = new SelectList(_context.Set<Building>(), "ID", "Name");
+            ViewBag.Department = new SelectList(_context.Set<Department>(), "ID", "Name");
             return View();
         }
 
@@ -70,8 +70,8 @@ namespace PeoplePro.Controllers
             }
             ViewData["BuildingID"] = new SelectList(_context.Set<Building>(), "ID", "ID", employee.BuildingID);
             ViewData["DepartmentID"] = new SelectList(_context.Set<Department>(), "ID", "ID", employee.DepartmentID);
-            ViewBag.Building = new SelectList(_context.Set<Building>(), "Name", "Name", employee.Building);
-            ViewBag.Department = new SelectList(_context.Set<Department>(), "Name", "Name", employee.Department);
+            ViewBag.Building = new SelectList(_context.Set<Building>(), "ID", "Name", employee.Building);
+            ViewBag.Department = new SelectList(_context.Set<Department>(), "ID", "Name", employee.Department);
             return View(employee);
         }
 
@@ -91,8 +91,8 @@ namespace PeoplePro.Controllers
 
             ViewData["BuildingID"] = new SelectList(_context.Set<Building>(), "ID", "ID", employee.BuildingID);
             ViewData["DepartmentID"] = new SelectList(_context.Set<Department>(), "ID", "ID", employee.DepartmentID);
-            ViewBag.Building = new SelectList(_context.Set<Building>(), "Name", "Name", employee.Building);
-            ViewBag.Department = new SelectList(_context.Set<Department>(), "Name", "Name", employee.Department);
+            ViewBag.Building = new SelectList(_context.Set<Building>(), "ID", "Name", employee.Building);
+            ViewBag.Department = new SelectList(_context.Set<Department>(), "ID", "Name", employee.Department);
 
             return View(employee);
         }

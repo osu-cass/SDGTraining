@@ -9,8 +9,8 @@ using PeoplePro.Models;
 namespace PeoplePro.Migrations
 {
     [DbContext(typeof(PeopleProContext))]
-    [Migration("20190405223656_Test4")]
-    partial class Test4
+    [Migration("20190409234421_Var_Fixes")]
+    partial class Var_Fixes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,7 +88,7 @@ namespace PeoplePro.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("PeoplePro.Models.Department", "Department")
-                        .WithMany("Employees")
+                        .WithMany()
                         .HasForeignKey("DepartmentID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

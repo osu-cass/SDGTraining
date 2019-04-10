@@ -2,7 +2,7 @@
 
 namespace PeoplePro.Migrations
 {
-    public partial class Test3 : Migration
+    public partial class Lists : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

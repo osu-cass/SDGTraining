@@ -19,12 +19,12 @@
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Building" class="control-label"></label>
-                <select asp-for="Building" class="form-control" asp-items="ViewBag.Building"></select>
+                <label asp-for="BuildingID" class="control-label">Building</label>
+                <select asp-for="BuildingID" class="form-control" asp-items="ViewBag.Building"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Department" class="control-label"></label>
-                <select asp-for="Department" class="form-control" asp-items="ViewBag.Department"></select>
+                <label asp-for="DepartmentID" class="control-label">Department</label>
+                <select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.Department"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
