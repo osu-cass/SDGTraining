@@ -4,11 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>PeoplePro Departments</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table" id="DepTable">
     <tr>
         <th>
@@ -27,7 +24,7 @@
 
 
 <div>
-    <button id="OpenButton" class="btn btn-default" >Open Me!</button>
+    <button id="OpenButton" class="btn btn-default" >Create a New Department Entry</button>
 </div>
 
 <script type="text/javascript">
@@ -40,11 +37,11 @@
                 data: { name: a },
                 success: function (response) {
                     $("#DepTable tr:last").after(response);
-                    $("#CreateForm").after("<div> <button id = 'OpenButton' class='btn btn-default'>Open Me!</button> </div>");
+                    $("#CreateForm").after("<div> <button id = 'OpenButton' class='btn btn-default'>Create a New Department Entry</button> </div>");
                     $("#CreateForm").remove();
                 },
                 error: function (response) {
-                    alert("Invalid field entry for new department");
+                    $("#InnerForm").after("<div class='text-danger'>Please enter a single word containing only letters</div>");
                 }
             });
         });
@@ -55,6 +52,7 @@
                 type: "GET",
                 success: function (response) {
                     $("#OpenButton").after(response);
+                    $("#InnerForm input").focus();
                     b.remove();
                 },
                 error: function (response) {
@@ -63,7 +61,7 @@
             });
         });
         $(document).on('click', '#CancelButton', function () {
-            $("#CreateForm").after("<div> <button id = 'OpenButton' class='btn btn-default'>Open Me!</button> </div>");
+            $("#CreateForm").after("<div> <button id = 'OpenButton' class='btn btn-default'>Create a New Department Entry</button> </div>");
             $("#CreateForm").remove();
         });
     });
