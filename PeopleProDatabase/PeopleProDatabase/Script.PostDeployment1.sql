@@ -33,6 +33,16 @@ WHEN NOT MATCHED BY TARGET THEN
 INSERT (Name, Address)
 VALUES (Name, Address);
 
+MERGE INTO LoginData AS Target
+USING (VALUES 
+        (1, 'Admin', 'password') 
+)
+AS Source (UserId, UserName, Password)
+ON Target.UserId = Source.UserId
+WHEN NOT MATCHED BY TARGET THEN
+INSERT (UserName, Password)
+VALUES (UserName, Password);
+
 MERGE INTO Employees AS Target
 USING (VALUES 
 (1, 'Hank', 'Derry', 1, 2),

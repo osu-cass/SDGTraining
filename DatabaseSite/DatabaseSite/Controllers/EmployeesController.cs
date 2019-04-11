@@ -10,11 +10,13 @@ using DatabaseSite.Models;
 
 namespace DatabaseSite.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         private PeopleProDatabaseEntities db = new PeopleProDatabaseEntities();
 
         // GET: Employees
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var employees = db.Employees.Include(e => e.Building).Include(e => e.Department);
@@ -22,6 +24,7 @@ namespace DatabaseSite.Controllers
         }
 
         // GET: Employees/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)

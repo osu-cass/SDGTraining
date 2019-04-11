@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using System.Data;
 using System.Data.Entity;
@@ -46,6 +46,18 @@ namespace DatabaseSite.Controllers
         public ActionResult CreatePrompt()
         {
             return PartialView("~/Views/Shared/Partials/CreateDepartmentPartial.cshtml");
+        }
+
+        [HttpPost]
+        public ActionResult Login(Login data)
+        {
+            int valid = db.LoginDatas.Where(x => x.UserName == data.UserName && x.Password == data.Password).Count();
+            if(valid > 0)
+            {
+                FormsAuthentication.SetAuthCookie(data.UserName, false);
+                return View("~/Views/Employees/Index.cshtml");
+            }
+            return View("~/Views/Login/Test.cshtml", data);
         }
     }
 }
