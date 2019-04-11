@@ -2,3 +2,77 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+$(function () {
+    console.log('DOM is ready!');
+})
+
+function getDepartments() {
+    $.ajax({
+        type: 'GET',
+        url: 'Departments/AjaxGet',
+        contentType: 'application/json; charset=utf-8',
+        data: {},
+        success: (res) => {
+            console.log('res =', res);
+        },
+        failure: (xhr, status, err) => {
+            alert('HTTP Status: ' + xhr.status + '; Error Text: ' + xhr.responseText);
+        }
+    });
+}
+
+function createDepartment() {
+    // show modal
+    $('#departmentModal').modal('show');
+
+    // reset form validation
+    var form = $('#departmentForm')[0];
+    form.classList.remove('was-validated');
+    form.reset();
+
+    // validate on submit
+    $('#departmentModalAcceptBtn').click((event) => {
+        if (form.checkValidity() === false) {
+            if (!$('#invalidDepartmentFormMsg')[0]) {
+                $('#departmentModal').find('.modal-footer').prepend(
+                    '<p id="invalidDepartmentFormMsg" style="color: red">Invalid form</p>'
+                );
+            }
+            event.preventDefault();
+            event.stopPropagation();
+        } else {
+            $('#invalidDepartmentFormMsg').remove();
+            // close modal if valid form
+            $('#departmentModal').modal('hide');
+            // make actual changes to models
+            $.ajax({
+                type: 'POST',
+                url: 'Departments/AjaxCreate',
+                //contentType: 'application/json',
+                data: objectifyForm(form),
+                //dataType: 'json',
+                beforeSend: () => {
+                    console.log('About to send:', JSON.stringify(objectifyForm(form)));
+                },
+                success: (res) => {
+                    console.log('res =', res);
+                },
+                failure: (xhr, status, err) => {
+                    alert('HTTP Status: ' + xhr.status + '; Error Text: ' + xhr.responseText);
+                }
+            });
+        }
+        form.classList.add('was-validated');
+    });
+}
+
+function objectifyForm(form) {
+    var retObj = {};
+
+    $(form).serializeArray().forEach((field) => {
+        retObj[field.name] = field.value;
+    });
+
+    return retObj;
+}

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PeoplePro.Dal.Infrastructure;
 using PeoplePro.Dal.Models;
+using PeoplePro.Models;
 
 namespace PeoplePro.Controllers
 {
@@ -19,12 +21,26 @@ namespace PeoplePro.Controllers
             _context = context;
         }
 
-        // GET: Departments
-        public async Task<IActionResult> Index()
+        // GET: Departments/AjaxGet
+        public List<Department> AjaxGet()
         {
-            var peopleProContext = _context.Departments.Include(d => d.Building).Include(d => d.Employees);
-            return View(await peopleProContext.ToListAsync());
-        } 
+            var departments = new List<Department>()
+            {
+                new Department {Name="test1", BuildingId=1},
+                new Department {Name="test2", BuildingId=2}
+            };
+
+            return departments;
+        }
+
+        // GET: Departments
+        public IActionResult Index()
+        {
+            var model = new DepartmentsViewModel();
+            model.Departments = _context.Departments.Include(d => d.Building).Include(d => d.Employees).ToList();
+            model.Buildings = _context.Buildings.ToList();
+            return View(model);
+        }
 
         // GET: Departments/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -50,6 +66,22 @@ namespace PeoplePro.Controllers
         {
             ViewData["BuildingId"] = new SelectList(_context.Buildings, "Id", "Name");
             return View();
+        }
+
+        // POST: Departments/AjaxCreate
+        [HttpPost]
+        public ActionResult AjaxCreate(Department departmentObj)
+        {
+            if (ModelState.IsValid)
+            {
+                // TODO
+
+                return Content("Success");
+            }
+            else
+            {
+                return Content("Error");
+            }
         }
 
         // POST: Departments/Create
