@@ -71,9 +71,19 @@ namespace PeoplePro.Controllers
             return View(department);
         }
 
-        [HttpPost]
-        public IActionResult createDepartment(Department model)
+        public IActionResult DepartmentModal()
         {
+            var model = new Department { };
+            ViewBag.Building = new SelectList(_context.Set<Building>(), "ID", "Name");
+
+            return PartialView("_DepartmentModalPartial", model);
+        }
+
+        [HttpPost]
+        public IActionResult DepartmentModal(Department model)
+        {
+            _context.Department.Add(model);
+
             return PartialView("__DepartmentModalPartial", model);
 
         }

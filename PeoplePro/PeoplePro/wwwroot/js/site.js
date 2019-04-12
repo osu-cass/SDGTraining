@@ -6,22 +6,26 @@
 
 $(function () {
     //on click of create button, show modal
+    var placeholderElement = $('#modal-placeholder')
     $('button[data-toggle="ajax-modal"]').click(function (event) {
         var url = $(this).data('url');
         $.get(url).done(function (data) {
+            //data in this scope is the html of the modal
             placeholderElement.html(data);
             placeholderElement.find('.modal').modal('show');
         });
+
+        placeholderElement.on('click', '[data-save="modal"]', function (event) {
+            event.preventDefault();
+
+            var form = $(this).parents('.modal').find('form');
+            var actionUrl = form.attr('action');
+            var dataToSend = form.serialize();
+
+            $.post(actionUrl, dataToSend).done(function (data) {
+                placeholderElement.find('.modal').modal('hide');
+            });
+        });
+        
     });
-    //on click of submit button, validate data is entered correctly
-
-    //once validated ajax request
-
-    //before request is sent, confirm request data
-    //console.log(request)
-
-    //if response is valid, print response
-    //console.log(response)
-
-    //handle error
 });
