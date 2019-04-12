@@ -71,6 +71,13 @@ namespace PeoplePro.Controllers
             return View(department);
         }
 
+        [HttpPost]
+        public IActionResult createDepartment(Department model)
+        {
+            return PartialView("__DepartmentModalPartial", model);
+
+        }
+
         // GET: Departments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
