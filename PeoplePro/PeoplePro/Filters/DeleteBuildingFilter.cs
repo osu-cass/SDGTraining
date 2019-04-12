@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -10,7 +11,7 @@ using PeoplePro.Models;
 
 namespace PeoplePro.Filters
 {
-    public class DeleteBuildingFilter : IActionFilter
+    public class DeleteBuildingFilter : IAsyncActionFilter
     {
         private readonly PeopleProContext _context;
 
@@ -19,13 +20,7 @@ namespace PeoplePro.Filters
             _context = context;
         }
 
-        public void OnActionExecuted(ActionExecutedContext context)
-        {
-            //our code after exection
-            throw new NotImplementedException();
-        }
-
-        public void OnActionExecuting(ActionExecutingContext context)
+        public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             //our code before action executes
             var param = context.ActionArguments.FirstOrDefault();
@@ -37,10 +32,13 @@ namespace PeoplePro.Filters
                 if (building.Departments.Count != 0)
                 {
                     context.Result = new BadRequestObjectResult("Departments is not empty");
-                    return;
+                }
+                else
+                {
+                    var resultContext = await next();
                 }
             }
-            throw new NotImplementedException();
+        }
+            //do something after the action executes
         }
     }
-}

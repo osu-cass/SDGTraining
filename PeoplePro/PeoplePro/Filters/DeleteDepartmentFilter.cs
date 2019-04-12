@@ -7,11 +7,10 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PeoplePro.Models;
-using PeoplePro.Controllers;
 
 namespace PeoplePro.Filters
 {
-    public class DeleteDepartmentFilter : IActionFilter
+    public class DeleteDepartmentFilter : IAsyncActionFilter
     {
         private readonly PeopleProContext _context;
 
@@ -19,17 +18,13 @@ namespace PeoplePro.Filters
         {
             _context = context;
         }
-        public void OnActionExecuted(ActionExecutedContext context)
-        {
-            //our code after exection
-            throw new NotImplementedException();
-        }
 
-        public async Task OnActionExecuting(ActionExecutingContext context)
+        public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             //our code before action executes
             var param = context.ActionArguments.FirstOrDefault();
             var department = _context.Department.Find(param.Value);
+            var departmentID = department.ID;
 
             if (department != null)
             {
@@ -37,14 +32,15 @@ namespace PeoplePro.Filters
                 if (department.Employees.Count != 0)
                 {
                     context.Result = new BadRequestObjectResult("Employees is not empty");
-                    return;
-                } else
+                }
+                else
                 {
-                    var depController = context.Controller as DepartmentController;
-                    await depController.DeleteConfirmed(param.Value[1]);
+                    var resultContext = await next();
                 }
             }
-            throw new NotImplementedException();
+            
+            //do something after the action executes
+
         }
     }
 }
