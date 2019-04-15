@@ -30,7 +30,7 @@ If you are unfamiliar with git and using github to manage this training project,
   * :white_check_mark: Relational database for Employees, Departments, and Buildings
   * :white_check_mark: Use of display and editor template
   * :white_check_mark: Database project
-  * :white_square_button: AJAX create and append to table for Departments or Buildings
+  * :white_check_mark: AJAX create and append to table for Departments or Buildings
   * :white_check_mark: Windows security
   * :white_check_mark: Testing
 
