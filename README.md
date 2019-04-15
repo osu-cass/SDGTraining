@@ -24,15 +24,15 @@ If you are unfamiliar with git and using github to manage this training project,
   * Submit a Pull Request after completing the project
 
 ## Deliverables 
-  * MVC web application with basic CRUD (Create, Read, Update, and Delete) views
-  * Entity framework models
-  * Model metadata attributes
-  * Relational database for Employees, Departments, and Buildings
-  * Use of display and editor template
-  * Database project
-  * AJAX create and append to table for Departments or Buildings
-  * Windows security
-  * Testing
+  * :white_check_mark: MVC web application with basic CRUD (Create, Read, Update, and Delete) views
+  * :white_check_mark: Entity framework models
+  * :white_check_mark: Model metadata attributes
+  * :white_check_mark: Relational database for Employees, Departments, and Buildings
+  * :white_check_mark: Use of display and editor template
+  * :white_check_mark: Database project
+  * :white_square_button: AJAX create and append to table for Departments or Buildings
+  * :white_check_mark: Windows security
+  * :white_check_mark: Testing
 
  ## Issues
   * This project is for training purposes and may contain issues and bugs
