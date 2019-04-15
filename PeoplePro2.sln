@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeoplePro2", "PeoplePro2\PeoplePro2.csproj", "{04C16E95-FA00-4202-8909-DB556F912EB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04C16E95-FA00-4202-8909-DB556F912EB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04C16E95-FA00-4202-8909-DB556F912EB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04C16E95-FA00-4202-8909-DB556F912EB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04C16E95-FA00-4202-8909-DB556F912EB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B22FCEB-23C9-4878-B747-ED1B9B5D8667}
+	EndGlobalSection
+EndGlobal
