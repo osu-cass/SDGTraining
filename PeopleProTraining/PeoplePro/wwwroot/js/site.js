@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 
 $(function () {
-    console.log('DOM is ready!');
+
 })
 
 function getDepartments() {
@@ -49,11 +49,9 @@ function createDepartment() {
             $.ajax({
                 type: 'POST',
                 url: 'Departments/AjaxCreate',
-                //contentType: 'application/json',
                 data: objectifyForm(form),
-                //dataType: 'json',
                 beforeSend: () => {
-                    console.log('About to send:', JSON.stringify(objectifyForm(form)));
+                    console.log('About to send:', objectifyForm(form));
                 },
                 success: (res) => {
                     console.log('res =', res);

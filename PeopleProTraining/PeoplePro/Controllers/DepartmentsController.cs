@@ -74,13 +74,25 @@ namespace PeoplePro.Controllers
         {
             if (ModelState.IsValid)
             {
-                // TODO
-
-                return Content("Success");
+                _context.Add(departmentObj);
+                _context.SaveChanges();
+                var department = new Department();
+                department = _context.Departments
+                    .Include(d => d.Building)
+                    .Include(d => d.Employees)
+                    .ToList()
+                    .Find(d => d.Id.Equals(departmentObj.Id));
+                return Json(new
+                {
+                    Id = department.Id,
+                    Name = department.Name,
+                    BuildingId = department.BuildingId
+                });
+                //return Json(new { Id = 1, Name = "success!" });
             }
             else
             {
-                return Content("Error");
+                return Json(new { err = "Error creating a new Department" });
             }
         }
 
