@@ -7,6 +7,7 @@ using DatabaseSite.Models;
 
 namespace DatabaseSite.Controllers
 {
+    [SignIn]
     //[Authorize(Users ="swanscol")]
     public class HomeController : Controller
     {

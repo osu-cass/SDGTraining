@@ -40,8 +40,18 @@
                     $("#CreateForm").after("<div> <button id = 'OpenButton' class='btn btn-default'>Create a New Department Entry</button> </div>");
                     $("#CreateForm").remove();
                 },
-                error: function (response) {
-                    $("#InnerForm").after("<div class='text-danger'>Please enter a single word containing only letters</div>");
+                error: function (jqXHR) {
+                    if (jqXHR.status == 403) {
+                        $('#LoginError').remove();
+                        $('#InputError').remove();
+                        $("#InnerForm").after("<div class='text-danger' id='LoginError'>You must be logged in to change the database</div>");
+                    }
+                    else {
+                        $('#LoginError').remove();
+                        $('#InputError').remove();
+                        $("#InnerForm").after("<div class='text-danger'id='InputError'>Please enter a single word containing only letters</div>");
+                        $("#InnerForm").after(statusCode);
+                    }
                 }
             });
         });

@@ -29,12 +29,16 @@ namespace DatabaseSite.Controllers
                 DepartmentId = db.Departments.Count()
             };
 
-            if(TryValidateModel(dep))
+            if(TryValidateModel(dep) && User.Identity.IsAuthenticated)
             {
 
                 db.Departments.Add(dep);
                 db.SaveChanges();
                 return PartialView("~/Views/Shared/Partials/DepartmentPartial.cshtml", dep);
+            }
+            else if (TryValidateModel(dep))
+            {
+                 return new HttpStatusCodeResult(403,"Not Logged in");
             }
             else
             {

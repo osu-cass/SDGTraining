@@ -9,8 +9,9 @@ namespace DatabaseSite.Models
     public class Login
     {
         [Required]
-        [Display(Name = "User Name")]
-        [RegularExpression(@"^[a-zA-Z""'\s-]*$")]
+        [Display(Name = "user name")]
+        
+        [RegularExpression(@"^[a-zA-Z""'\s-]*$", ErrorMessage = "Field must only contain uppercase and lowercase letters")]
         public string UserName { set; get; }
         [Required]
         public string Password { set; get; }

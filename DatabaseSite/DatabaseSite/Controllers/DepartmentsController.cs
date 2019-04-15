@@ -10,17 +10,26 @@ using DatabaseSite.Models;
 
 namespace DatabaseSite.Controllers
 {
+    [SignIn]
+    [Authorize]
     public class DepartmentsController : Controller
     {
         private PeopleProDatabaseEntities db = new PeopleProDatabaseEntities();
 
+
         // GET: Departments
+        [AllowAnonymous]
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.Login = "Sign Out";
+            }
             return View(db.Departments.ToList());
         }
 
         // GET: Departments/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)

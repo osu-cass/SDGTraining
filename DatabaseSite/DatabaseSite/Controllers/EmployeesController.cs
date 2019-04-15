@@ -10,6 +10,7 @@ using DatabaseSite.Models;
 
 namespace DatabaseSite.Controllers
 {
+    [SignIn]
     [Authorize]
     public class EmployeesController : Controller
     {

@@ -10,17 +10,21 @@ using DatabaseSite.Models;
 
 namespace DatabaseSite.Controllers
 {
+    [SignIn]
+    [Authorize]
     public class BuildingsController : Controller
     {
         private PeopleProDatabaseEntities db = new PeopleProDatabaseEntities();
 
         // GET: Buildings
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Buildings.ToList());
         }
 
         // GET: Buildings/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -32,7 +36,7 @@ namespace DatabaseSite.Controllers
             {
                 return HttpNotFound();
             }
-            return View(building);
+            return View("Details",building);
         }
 
         // GET: Buildings/Create

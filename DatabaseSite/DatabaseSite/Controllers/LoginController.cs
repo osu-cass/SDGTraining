@@ -8,13 +8,14 @@ using System.Data.Entity;
 
 namespace DatabaseSite.Controllers
 {
+    [SignIn]
     public class LoginController : Controller
     {
         private PeopleProDatabaseEntities db = new PeopleProDatabaseEntities();
         // GET: Login
         public ActionResult Index()
         {
-            FormsAuthentication.SignOut();
+            //FormsAuthentication.SignOut();
             return View(new Login());
         }
 
@@ -26,9 +27,19 @@ namespace DatabaseSite.Controllers
             {
                 FormsAuthentication.SetAuthCookie(data.UserName, false);
                 var employees = db.Employees.Include(e => e.Building).Include(e => e.Department);
+                ViewBag.Login = "Sign Out";
+                ViewBag.LoginAction = "LogOut";
                 return View("~/Views/Employees/Index.cshtml", employees.ToList());
             }
             return View("~/Views/Login/Index.cshtml", data);
+        }
+
+        public ActionResult LogOut()
+        {
+            ViewBag.Login = "Sign In";
+            ViewBag.LoginAction = "Login";
+            FormsAuthentication.SignOut();
+            return View("~/Views/Login/LogOut.cshtml");
         }
     }
 }
