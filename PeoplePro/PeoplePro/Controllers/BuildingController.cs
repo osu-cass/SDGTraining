@@ -66,7 +66,27 @@ namespace PeoplePro.Controllers
             return View(building);
         }
 
-        // GET: Buildings/Edit/5
+        public IActionResult BuildingModal()
+        {
+            var model = new Building { };
+
+            return PartialView("_BuildingModalPartial", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BuildingModal(Building model)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(model);
+                await _context.SaveChangesAsync();
+                return PartialView("_BuildingModalPartial", model);
+            }
+            ViewBag.Department = new SelectList(_context.Set<Department>(), "ID", "Name");
+            return PartialView("_BuildingModalPartial", model);
+        }
+
+            // GET: Buildings/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

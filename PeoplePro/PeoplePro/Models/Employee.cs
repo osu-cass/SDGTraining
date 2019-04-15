@@ -11,13 +11,13 @@ namespace PeoplePro.Models
     {
         public int ID { get; set; }
 
-        [StringLength(60, MinimumLength = 1), Display(Name = "First Name")]
+        [Required, StringLength(60, MinimumLength = 1), Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        [ForeignKey("DepartmentID")]
+        [Required, ForeignKey("DepartmentID")]
         public int DepartmentID { get; set; }
 
-        [ForeignKey("BuildingID")]
+        [Required, ForeignKey("BuildingID")]
         public int BuildingID { get; set; }
 
         public virtual Building Building { get; set; }

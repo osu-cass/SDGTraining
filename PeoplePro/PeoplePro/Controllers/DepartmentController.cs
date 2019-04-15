@@ -80,12 +80,16 @@ namespace PeoplePro.Controllers
         }
 
         [HttpPost]
-        public IActionResult DepartmentModal(Department model)
+        public async Task<IActionResult> DepartmentModal(Department model)
         {
-            _context.Department.Add(model);
-
-            return PartialView("__DepartmentModalPartial", model);
-
+            if(ModelState.IsValid)
+            {
+                _context.Add(model);
+                await _context.SaveChangesAsync();
+                return PartialView("_DepartmentModalPartial", model);
+            }
+            ViewBag.Building = new SelectList(_context.Set<Building>(), "ID", "Name");
+            return PartialView("_DepartmentModalPartial", model);
         }
 
         // GET: Departments/Edit/5
@@ -138,7 +142,8 @@ namespace PeoplePro.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BuildingID"] = new SelectList(_context.Set<Building>(), "ID", "ID", department.Building);
+            ViewData["BuildingID"] = new SelectList(_context.Set<Building>(), "ID", "ID", department.BuildingID);
+            ViewBag.Building = new SelectList(_context.Set<Building>(), "ID", "Name", department.Building);
             return View(department);
         }
 

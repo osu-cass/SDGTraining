@@ -1,31 +1,26 @@
-﻿@model PeoplePro.Models.Department
+﻿@model PeoplePro.Models.Building
 
 @{
-    ViewData["Title"] = "Create New Department";
+    ViewData["Title"] = "Create New Building";
 }
 
 <!-- Modal -->
-<div class="modal fade" id="add-department" tabindex="-1" role="dialog" aria-labelledby="addDepartmentLabel" aria-hidden="true">
+<div class="modal fade" id="add-building" tabindex="-1" role="dialog" aria-labelledby="addBuilidingLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addDepartmentLabel">Add Department</h5>
+                <h5 class="modal-title" id="addBuildingLabel">Add Building</h5>
                 <button type="button" class="close" data-dismiss="ajax-modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-action="DepartmentModal">
+                <form asp-action="BuildingModal">
                     <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
                     <div class="form-group">
                         <label asp-for="Name"></label>
                         <input asp-for="Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="BuildingID">Building</label>
-                        <select asp-for="BuildingID" class="form-control" asp-items="ViewBag.Building"></select>
-                        <span asp-validation-for="BuildingID" class="text-danger"></span>
                     </div>
                 </form>
             </div>

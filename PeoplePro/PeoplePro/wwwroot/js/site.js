@@ -15,6 +15,10 @@ $(function () {
             placeholderElement.find('.modal').modal('show');
         });
 
+        placeholderElement.on('click', '[data-dismiss="ajax-modal"]', function (event) {
+            placeholderElement.find('.modal').modal('hide');
+        });
+
         placeholderElement.on('click', '[data-save="modal"]', function (event) {
             event.preventDefault();
 
@@ -23,7 +27,16 @@ $(function () {
             var dataToSend = form.serialize();
 
             $.post(actionUrl, dataToSend).done(function (data) {
-                placeholderElement.find('.modal').modal('hide');
+                var newBody = $('.modal-body', data);
+                placeholderElement.find('.modal-body').replaceWith(newBody);
+                // find IsValid input field and check it's value
+                // if it's valid then hide modal window
+                var isValid = newBody.find('[name="IsValid"]').val() == 'True';
+
+                if (isValid) {
+                    placeholderElement.find('.modal').modal('hide');
+                    location.reload()
+                }
             });
         });
         
