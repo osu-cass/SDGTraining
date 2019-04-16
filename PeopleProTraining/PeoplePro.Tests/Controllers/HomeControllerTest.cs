@@ -1,5 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PeoplePro.Dal;
+using PeoplePro.Dal.Interfaces;
+using PeoplePro;
 using PeoplePro.Controllers;
 
 namespace PeoplePro.Tests.Controllers

@@ -1,10 +1,17 @@
-﻿using Microsoft.AspNetCore;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
 using Microsoft.EntityFrameworkCore;
-using PeoplePro.Models;
+using PeoplePro.Dal;
+using PeoplePro.Dal.Infrastructure;
+using PeoplePro.Dal.Models;
 
 namespace PeoplePro
 {
@@ -23,10 +30,11 @@ namespace PeoplePro
                     var context = services.GetRequiredService<PeopleProContext>();
                     context.Database.Migrate();
                     SeedData.Initialize(services);
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred seeding the DB.");
+                    logger.LogError(ex, "An error occurred when seeding the DB");
                 }
             }
 

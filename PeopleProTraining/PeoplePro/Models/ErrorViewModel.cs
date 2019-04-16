@@ -1,3 +1,5 @@
+using System;
+
 namespace PeoplePro.Models
 {
     public class ErrorViewModel

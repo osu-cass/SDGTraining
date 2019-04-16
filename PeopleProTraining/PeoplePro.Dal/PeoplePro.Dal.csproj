@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RuntimeFrameworkVersion>2.1.0</RuntimeFrameworkVersion>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190402235722_Initial.cs" />
+    <Compile Remove="Migrations\20190403000705_Initial.cs" />
+    <Compile Remove="Migrations\20190403000802_Initial.cs" />
+    <Compile Remove="Migrations\20190403001101_Initial.cs" />
+    <Compile Remove="Migrations\20190403015003_Initial.cs" />
+    <Compile Remove="Migrations\20190403184914_Initial.cs" />
+    <Compile Remove="Migrations\20190403190118_Initial.cs" />
+    <Compile Remove="Migrations\20190403191449_Initial.cs" />
+    <Compile Remove="Migrations\20190403192347_Initial.cs" />
+    <Compile Remove="Migrations\20190403235944_Initial.cs" />
+    <Compile Remove="Migrations\20190408231226_Initial.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Core">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.core\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
