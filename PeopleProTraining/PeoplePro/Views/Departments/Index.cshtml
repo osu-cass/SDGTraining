@@ -1,78 +1,48 @@
-﻿@model PeoplePro.Models.DepartmentsViewModel
+﻿@model IEnumerable<PeoplePro.Models.Department>
+
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<div id="departmentModalPlaceholder"></div>
 
-<button class="btn btn-primary" type="button" onclick="createDepartment()">Create New</button>
+<h1>Index</h1>
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Departments[0].Name)
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Departments[0].Building)
+                @Html.DisplayNameFor(model => model.Building)
             </th>
-            <th>@Html.DisplayNameFor(model => model.Departments[0].Employees)</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Departments) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Building.Name)
-            </td>
-            <td>
-    @foreach (var employee in item.Employees) {
-                <span>@Html.DisplayFor(modelEmployee => employee.FirstName)</span>
-                <span>@Html.DisplayFor(modelEmployee => employee.LastName)</span>
-                <span>|</span>
-    }
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Building.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
-<div id="departmentModal" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Create a Department</h3>
-            </div>
-
-            <form id="departmentForm" class="modal-body needs-validation" novalidate>
-                <div class="form-group">
-                    <label>Name</label>
-                    <input class="form-control" name="Name" value="" type="text" minlength="3" maxlength="60" placeholder="Name" required autofocus>
-                </div>
-                <div class="form-group">
-                    <label>Building</label>
-                    <select class="form-control" name="BuildingId" required>
-                        <option value="">Select a building</option>
-@foreach (var building in Model.Buildings) {
-                        <option value="@building.Id">@building.Name</option>
-}
-                    </select>
-                </div>
-            </form>
-
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button id="departmentModalAcceptBtn" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+<button class="btn btn-primary btn-block" type="button" data-toggle="ajax-modal" data-target="#departmentModal" data-url="@Url.Action("ShowDepartmentModal")">
+    Add Department
+</button>

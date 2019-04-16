@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PeoplePro.Dal.Infrastructure;
-using PeoplePro.Dal.Models;
 using PeoplePro.Models;
 
 namespace PeoplePro.Controllers
@@ -21,25 +16,34 @@ namespace PeoplePro.Controllers
             _context = context;
         }
 
-        // GET: Departments/AjaxGet
-        public List<Department> AjaxGet()
+        // AJAX GET: Departments/ShowDepartmentModal
+        public IActionResult ShowDepartmentModal()
         {
-            var departments = new List<Department>()
-            {
-                new Department {Name="test1", BuildingId=1},
-                new Department {Name="test2", BuildingId=2}
-            };
+            var model = new Department();
 
-            return departments;
+            ViewBag.Buildings = new SelectList(_context.Buildings, "Id", "Name");
+
+            return PartialView("_DepartmentModal", model);
+        }
+
+        // AJAX POST: Departments/Add
+        [HttpPost]
+        public IActionResult Add([Bind("Id,Name,BuildingId")] Department department)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(department);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return Json(new { err = true });
         }
 
         // GET: Departments
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var model = new DepartmentsViewModel();
-            model.Departments = _context.Departments.Include(d => d.Building).Include(d => d.Employees).ToList();
-            model.Buildings = _context.Buildings.ToList();
-            return View(model);
+            var peopleProContext = _context.Departments.Include(d => d.Building);
+            return View(await peopleProContext.ToListAsync());
         }
 
         // GET: Departments/Details/5
@@ -52,6 +56,7 @@ namespace PeoplePro.Controllers
 
             var department = await _context.Departments
                 .Include(d => d.Building)
+                .Include(d => d.Employees)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (department == null)
             {
@@ -64,37 +69,8 @@ namespace PeoplePro.Controllers
         // GET: Departments/Create
         public IActionResult Create()
         {
-            ViewData["BuildingId"] = new SelectList(_context.Buildings, "Id", "Name");
+            ViewData["BuildingId"] = new SelectList(_context.Set<Building>(), "Id", "Name");
             return View();
-        }
-
-        // POST: Departments/AjaxCreate
-        [HttpPost]
-        public ActionResult AjaxCreate(Department newDepartment)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(newDepartment);
-                _context.SaveChanges();
-                var departmentDb = new Department();
-                departmentDb = _context.Departments
-                    .Include(d => d.Building)
-                    .Include(d => d.Employees)
-                    .ToList()
-                    .Find(d => d.Id.Equals(newDepartment.Id));
-                var departmentBuilding = new Building();
-                departmentBuilding = _context.Buildings.ToList().Find(b => b.Id.Equals(newDepartment.BuildingId));
-                return Json(new
-                {
-                    id = departmentDb.Id,
-                    name = departmentDb.Name,
-                    buildingName = departmentBuilding.Name
-                });
-            }
-            else
-            {
-                return Json(new { err = "Error creating a new Department" });
-            }
         }
 
         // POST: Departments/Create
@@ -110,7 +86,7 @@ namespace PeoplePro.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BuildingId"] = new SelectList(_context.Buildings, "Id", "Name", department.BuildingId);
+            ViewData["BuildingId"] = new SelectList(_context.Set<Building>(), "Id", "Name", department.BuildingId);
             return View(department);
         }
 
@@ -127,7 +103,7 @@ namespace PeoplePro.Controllers
             {
                 return NotFound();
             }
-            ViewData["BuildingId"] = new SelectList(_context.Buildings, "Id", "Name", department.BuildingId);
+            ViewData["BuildingId"] = new SelectList(_context.Set<Building>(), "Id", "Name", department.BuildingId);
             return View(department);
         }
 
@@ -149,21 +125,19 @@ namespace PeoplePro.Controllers
                 {
                     _context.Update(department);
                     await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
+                } catch (DbUpdateConcurrencyException)
                 {
                     if (!DepartmentExists(department.Id))
                     {
                         return NotFound();
-                    }
-                    else
+                    } else
                     {
                         throw;
                     }
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BuildingId"] = new SelectList(_context.Buildings, "Id", "Name", department.BuildingId);
+            ViewData["BuildingId"] = new SelectList(_context.Set<Building>(), "Id", "Name", department.BuildingId);
             return View(department);
         }
 

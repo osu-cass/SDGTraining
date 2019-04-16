@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PeoplePro.Dal.Infrastructure;
-using PeoplePro.Dal.Models;
+using PeoplePro.Models;
 
 namespace PeoplePro.Controllers
 {
@@ -48,7 +45,7 @@ namespace PeoplePro.Controllers
         // GET: Employees/Create
         public IActionResult Create()
         {
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name");
+            ViewData["DepartmentId"] = new SelectList(_context.Set<Department>(), "Id", "Name");
             return View();
         }
 
@@ -65,7 +62,7 @@ namespace PeoplePro.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name", employee.DepartmentId);
+            ViewData["DepartmentId"] = new SelectList(_context.Set<Department>(), "Id", "Name", employee.DepartmentId);
             return View(employee);
         }
 
@@ -82,7 +79,7 @@ namespace PeoplePro.Controllers
             {
                 return NotFound();
             }
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name", employee.DepartmentId);
+            ViewData["DepartmentId"] = new SelectList(_context.Set<Department>(), "Id", "Name", employee.DepartmentId);
             return View(employee);
         }
 
@@ -104,21 +101,19 @@ namespace PeoplePro.Controllers
                 {
                     _context.Update(employee);
                     await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
+                } catch (DbUpdateConcurrencyException)
                 {
                     if (!EmployeeExists(employee.Id))
                     {
                         return NotFound();
-                    }
-                    else
+                    } else
                     {
                         throw;
                     }
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name", employee.DepartmentId);
+            ViewData["DepartmentId"] = new SelectList(_context.Set<Department>(), "Id", "Name", employee.DepartmentId);
             return View(employee);
         }
 

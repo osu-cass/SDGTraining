@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PeoplePro.Dal.Infrastructure;
-using PeoplePro.Dal.Models;
+using PeoplePro.Models;
 
 namespace PeoplePro.Controllers
 {
@@ -22,8 +18,7 @@ namespace PeoplePro.Controllers
         // GET: Buildings
         public async Task<IActionResult> Index()
         {
-            var peopleProContext = _context.Buildings.Include(d => d.Departments);
-            return View(await peopleProContext.ToListAsync());
+            return View(await _context.Buildings.ToListAsync());
         }
 
         // GET: Buildings/Details/5
@@ -35,6 +30,7 @@ namespace PeoplePro.Controllers
             }
 
             var building = await _context.Buildings
+                .Include(b => b.Departments)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (building == null)
             {
@@ -100,14 +96,12 @@ namespace PeoplePro.Controllers
                 {
                     _context.Update(building);
                     await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
+                } catch (DbUpdateConcurrencyException)
                 {
                     if (!BuildingExists(building.Id))
                     {
                         return NotFound();
-                    }
-                    else
+                    } else
                     {
                         throw;
                     }
