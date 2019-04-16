@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,13 @@ namespace PeoplePro.Controllers
         public async Task<IActionResult> Index()
         {
             var peopleProContext = _context.Employee.Include(d => d.Building).Include(d => d.Department);
+
+            var isAjax = Request.Headers["X-Requested-With"] == "XMLHttpRequest";
+            if (isAjax)
+            {
+                return PartialView("_Table", await peopleProContext.ToListAsync());
+            }
+
             return View(await peopleProContext.ToListAsync());
         }
 

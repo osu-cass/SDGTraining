@@ -23,6 +23,11 @@ namespace PeoplePro.Controllers
         public async Task<IActionResult> Index()
         {
             var peopleProContext = _context.Department.Include(d => d.Building).Include(d => d.Employees);
+            var isAjax = Request.Headers["X-Requested-With"] == "XMLHttpRequest";
+            if (isAjax)
+            {
+                return PartialView("_Table", await peopleProContext.ToListAsync());
+            }
             return View(await peopleProContext.ToListAsync());
         }
 

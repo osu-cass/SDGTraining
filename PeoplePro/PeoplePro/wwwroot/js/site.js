@@ -24,9 +24,9 @@ $(function () {
 
             var form = $(this).parents('.modal').find('form');
             var actionUrl = form.attr('action');
-            var dataToSend = form.serialize();
+            var dataToSend = new FormData(form.get(0));
 
-            $.post(actionUrl, dataToSend).done(function (data) {
+            $.ajax({ url: actionUrl, method: 'post', data: dataToSend, processData: false, contentType: false }).done(function (data) {
                 var newBody = $('.modal-body', data);
                 placeholderElement.find('.modal-body').replaceWith(newBody);
                 // find IsValid input field and check it's value
@@ -34,8 +34,15 @@ $(function () {
                 var isValid = newBody.find('[name="IsValid"]').val() == 'True';
 
                 if (isValid) {
+                    var tableElement = $('#table');
+                    var tableUrl = tableElement.data('url');
+                    console.log(tableElement)
+                    $.get(tableUrl).done(function (table) {
+                        tableElement.replaceWith(table);
+                    });
+
                     placeholderElement.find('.modal').modal('hide');
-                    location.reload()
+                    //location.reload()
                 }
             });
         });
