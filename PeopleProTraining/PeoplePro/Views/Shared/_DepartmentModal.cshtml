@@ -1,0 +1,31 @@
+﻿@*@model PeoplePro.Models.DepartmentsViewModel
+
+<div id="departmentModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Create a Department</h3>
+            </div>
+            <form id="departmentForm" class="modal-body needs-validation" novalidate>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control" name="Name" value="" type="text" minlength="3" maxlength="60" placeholder="Name" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label>Building</label>
+                    <select class="form-control" name="BuildingId" required>
+                        <option value="">Select a building</option>
+                        @foreach (var building in Model.Buildings)
+                        {
+                            <option value="@building.Id">@building.Name</option>
+                        }
+                    </select>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button id="departmentModalAcceptBtn" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>*@

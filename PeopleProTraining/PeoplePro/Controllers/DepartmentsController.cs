@@ -70,25 +70,26 @@ namespace PeoplePro.Controllers
 
         // POST: Departments/AjaxCreate
         [HttpPost]
-        public ActionResult AjaxCreate(Department departmentObj)
+        public ActionResult AjaxCreate(Department newDepartment)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(departmentObj);
+                _context.Add(newDepartment);
                 _context.SaveChanges();
-                var department = new Department();
-                department = _context.Departments
+                var departmentDb = new Department();
+                departmentDb = _context.Departments
                     .Include(d => d.Building)
                     .Include(d => d.Employees)
                     .ToList()
-                    .Find(d => d.Id.Equals(departmentObj.Id));
+                    .Find(d => d.Id.Equals(newDepartment.Id));
+                var departmentBuilding = new Building();
+                departmentBuilding = _context.Buildings.ToList().Find(b => b.Id.Equals(newDepartment.BuildingId));
                 return Json(new
                 {
-                    Id = department.Id,
-                    Name = department.Name,
-                    BuildingId = department.BuildingId
+                    id = departmentDb.Id,
+                    name = departmentDb.Name,
+                    buildingName = departmentBuilding.Name
                 });
-                //return Json(new { Id = 1, Name = "success!" });
             }
             else
             {

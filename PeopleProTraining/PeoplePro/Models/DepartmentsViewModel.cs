@@ -10,6 +10,8 @@ namespace PeoplePro.Models
     {
         public List<Department> Departments { get; set; }
 
+        //public Department Department { get; set; }
+
         public List<Building> Buildings { get; set; }
     }
 }

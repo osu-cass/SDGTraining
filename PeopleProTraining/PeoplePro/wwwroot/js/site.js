@@ -55,6 +55,16 @@ function createDepartment() {
                 },
                 success: (res) => {
                     console.log('res =', res);
+                    $('tbody').append('<tr>' +
+                        '<td>' + res.name + '</td>' +
+                        '<td>' + res.buildingName + '</td>' +
+                        '<td></td>' +
+                        '<td>' + 
+                            '<a asp-action="Edit" asp-route-id="' + res.id + '">Edit</a> | ' +
+                            '<a asp-action="Details" asp-route-id="' + res.id + '">Details</a> | ' + 
+                            '<a asp-action="Delete" asp-route-id="' + res.id + '">Delete</a>' +
+                        '</td>' +
+                    '</tr>');
                 },
                 failure: (xhr, status, err) => {
                     alert('HTTP Status: ' + xhr.status + '; Error Text: ' + xhr.responseText);
