@@ -1,0 +1,14 @@
+﻿@model DatabaseSite.Models.Employee
+
+@{
+    ViewBag.Title = "Employee Details";
+}
+
+<h2>Employee Details</h2>
+<div>
+    @Html.DisplayForModel()
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

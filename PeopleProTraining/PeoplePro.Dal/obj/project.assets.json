@@ -1020,7 +1020,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore/2.1.4": {
-      "sha512": "72l8hbaJ5cXxZLCFeo46MDnvU8XJiDRNh1YQPzAlqVAlQrUwSVojYbJyOE7vbWqsb8rRqQYJ6NsmgPdUv/NKzw==",
+      "sha512": "Rt2SIF3LPQfBzQYbhOv8LwQKy7UkZh+zJcls5eLTOlbPahLXH7IWCkk3mQpzTvljG55vkhzNcOjzrVLcO0uICA==",
       "type": "package",
       "path": "microsoft.entityframeworkcore/2.1.4",
       "files": [
@@ -1033,7 +1033,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore.Abstractions/2.1.4": {
-      "sha512": "5Vc1zdCq7p+E/8ndJnTKHebJeqSC/1gb4hXDPi7UHdqURAxWl3lZV5+79x/dSfO/P6n/sEz5fURYGOMDoreXUA==",
+      "sha512": "3djJy9gM2PZQFz6NHPSVzAN8azBu7afehDLwGkCR8yCMVhNzkkVdT/JZMfsSzuNZ302wIFWbzEYSAEI6lBddMA==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.abstractions/2.1.4",
       "files": [
@@ -1046,7 +1046,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore.Analyzers/2.1.4": {
-      "sha512": "cYjXickepORM4UmNdqdZ3l74xhG5OHWMDxsFlqHJGm0qxLAHv5GAI2dKkkGslrjyaPYnfRW3JhAWubBWBt0XUg==",
+      "sha512": "VEyuULTq48tbPjwLXo9j5WdObg0ViHYI4CwvdaYG23r13wIP2MJqpn4Nc9HpUQPPxGDqL2FO9HRvSY3Xufgtcw==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.analyzers/2.1.4",
       "files": [
@@ -1058,10 +1058,11 @@
       ]
     },
     "Microsoft.EntityFrameworkCore.Design/2.1.4": {
-      "sha512": "oQ9riABU2UiAE0aj1/yRZx58dvyTsmmSL2tgASrhYxwHeAAEO9is1OavrdjC6hDc+t/M0/PsJ8GFyRp8cedlWg==",
+      "sha512": "UWn5ufxQZiFl18MSzD7/JM4kNUtbMtJQuNncZ9k4Is7J/oogx6ApbG/nsznoEcM2PfeZc6CZG9u14TJZbXRoig==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.design/2.1.4",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "build/net461/Microsoft.EntityFrameworkCore.Design.props",
         "build/netcoreapp2.0/Microsoft.EntityFrameworkCore.Design.props",
@@ -1074,7 +1075,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore.Relational/2.1.4": {
-      "sha512": "cn/sEABCjVEp+Ji8LaDjGc7kjD2fJ9y46GL7rTnP1imWmdEYr3eL1oTNKOukMCNwjEGf1pZid0f0LKXaWBGbHw==",
+      "sha512": "Ekl7Kjo5YrPahQ1FJJVSd1ZTnmbtCPdkbI8CMZfbGBQMtrYgBttHxE4bTA4+Ys69+BTRMc/AdWoCfRyioxZA+w==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.relational/2.1.4",
       "files": [
@@ -1087,7 +1088,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore.Sqlite/2.1.4": {
-      "sha512": "mY93We4zTw3nAUaJ8VUMk2iVYV/yAg5kmzw3ew9Nv7VSrlix9yVPz1/kZZ680sCDY3cpSTB5R5gn+3+UrZCGlA==",
+      "sha512": "d/3Eih3qphowTtkASx5HgzGOrDsYiKdXYPQnyLeJtpe9hJgOi2HrF11oQiPu6gaw9C0G+ALXicFNDB27R442Mg==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.sqlite/2.1.4",
       "files": [
@@ -1099,7 +1100,7 @@
       ]
     },
     "Microsoft.EntityFrameworkCore.Sqlite.Core/2.1.4": {
-      "sha512": "fDNobKc1Ffb3z56ckiWJ7J64pbVDBNiX5XdGGygr7GbwY/rG541NRTX8kXOSvkUZ2qNgAYDqAYjUTYMmzBnRCw==",
+      "sha512": "lmQhiLh+oXtcyIRXOu8F7VFdv56eYlGem36d7bHFiosK2jA6RBpynPe3hdVMcNWXoABUXIhS/WfN8+/I8ynmKg==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.sqlite.core/2.1.4",
       "files": [
@@ -1172,7 +1173,7 @@
       ]
     },
     "Microsoft.Extensions.DependencyInjection/2.1.1": {
-      "sha512": "ZPFcDUbSwaEVWMyef8+9GqiTAghHX+eLeIEW032i4LDFAdyM4J4brV0UzChlKtClT7cuip/Of6G+veDnO3/bCw==",
+      "sha512": "2nshYaLTn73Ie+/yTkb7EZIXwQeFIXsYCBy/jSY9bMayYykGNjdWa25frayhuPAGVbZpEgfgp3d4JRVEuVyEqQ==",
       "type": "package",
       "path": "microsoft.extensions.dependencyinjection/2.1.1",
       "files": [
@@ -1554,7 +1555,7 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.1.0": {
-      "sha512": "TT+QCi9LcxGTjBssH7S7n5+8DVcwfG4DYgXX7Dk7+BfZ4oVHj8Q0CbYk9glzAlHLsSt3bYzol+fOdra2iu6GOw==",
+      "sha512": "aSTPL94NloSiQVL5Len8wbjFKOnoAX/vOh3s3DF6g3c7GUUMLCDvnBhmA72M2iN2AedyA8hpr7m89kzSAKUnJQ==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.1.0",
       "files": [
@@ -1714,7 +1715,7 @@
       ]
     },
     "Remotion.Linq/2.2.0": {
-      "sha512": "fK/76UmpC0FXBlGDFVPLJHQlDLYnGC+XY3eoDgCgbtrhi0vzbXDQ3n/IYHhqSKqXQfGw/u04A1drWs7rFVkRjw==",
+      "sha512": "twDAH8dAXXCAf3sRv1Tf94u66eEHvgU75hfn1nn2v4fSWXD50XoDOAk8WpSrbViNuMkB4kN1ElnOGm1c519IHg==",
       "type": "package",
       "path": "remotion.linq/2.2.0",
       "files": [
@@ -1735,7 +1736,7 @@
       ]
     },
     "SQLitePCLRaw.bundle_green/1.1.11": {
-      "sha512": "Hqp8IF/RLjbypkLm+t+1RqAX8EKuWEkj7wkLXplfENQoPnE127cvTmaDvaQKtt7a5QsD/HNjFDr1z5f9q2wdPg==",
+      "sha512": "HOD1/Jg9VZtrOyPUCD9reQOXHq4r+fNe24qw5nghuiUcKch+9jePeRpt6MqGGUFhg2KW89KvE/RFlhpbfF8pKA==",
       "type": "package",
       "path": "sqlitepclraw.bundle_green/1.1.11",
       "files": [
@@ -1782,7 +1783,7 @@
       ]
     },
     "SQLitePCLRaw.core/1.1.11": {
-      "sha512": "QT17CyQAQIbTCu6pW5+uVA8BXqRzquiDI1tr5Un6c1YZcQydPmGPuYYng9xMs2UHUDYHbTu+JDkp55WR+qo9bQ==",
+      "sha512": "bWiOso10I1vDuc5rbzT69LQT0+oXfYnoqx8vKJ8zim/CJ4ytSd20QNTE/FE0dvWEgXGnvDp7gGJFu6PeWnhx9g==",
       "type": "package",
       "path": "sqlitepclraw.core/1.1.11",
       "files": [
@@ -1808,7 +1809,7 @@
       ]
     },
     "SQLitePCLRaw.lib.e_sqlite3.linux/1.1.11": {
-      "sha512": "yt79OujiYBueEUdhTQI+fIdmRpFEGcaMLziSCfhG2dsAERDvCQ+FB5tQgZBdFkB2kmVl0llskzBtwSbg3WEIdQ==",
+      "sha512": "x5nuN19UdLgPKcP94lTuVSDTosDGIU3HAMmozd0VoLY5/dCgSl2Ru41Tz44IsAW33ylftboQlnVhahCtVR+3AA==",
       "type": "package",
       "path": "sqlitepclraw.lib.e_sqlite3.linux/1.1.11",
       "files": [
@@ -1830,7 +1831,7 @@
       ]
     },
     "SQLitePCLRaw.lib.e_sqlite3.osx/1.1.11": {
-      "sha512": "o6rxxAFS5Hya6AXCA/eU+1QqwpGVHJBaJjIG+Mui3kIqcV6d+qz0zi46i1QNK6TAel8Sj4QlXO85wNPN70BMEg==",
+      "sha512": "mjLRS9qb8JnKKHdowd3bSlOnEGSgGuXREBXHU8xecUlMCLoKMj7XEg7EDQeeu89aYGtSegLY95BRHnA9p0+q2g==",
       "type": "package",
       "path": "sqlitepclraw.lib.e_sqlite3.osx/1.1.11",
       "files": [
@@ -1848,7 +1849,7 @@
       ]
     },
     "SQLitePCLRaw.lib.e_sqlite3.v110_xp/1.1.11": {
-      "sha512": "h1Jng85sdFV/IC+Lri+buN1r5Kd0kgh0lh/pc4jlHd3tljZhc2Si2GW1VD0hJc4p/P4oSVa2426hBAi1y6/goA==",
+      "sha512": "JvtHjNrd/est9wJitEiWx1O08XqBm4/l3Lhf01cFf9cIoNxhI+/idcYLMKS4XhewgaSHpuB1/Pi1W6VRjXrmIg==",
       "type": "package",
       "path": "sqlitepclraw.lib.e_sqlite3.v110_xp/1.1.11",
       "files": [
@@ -1866,7 +1867,7 @@
       ]
     },
     "SQLitePCLRaw.provider.e_sqlite3.netstandard11/1.1.11": {
-      "sha512": "6q2qXc7GA11ZFh3ATFj9LjzF0HfMtlN1hDi8QATSoML4sR+inquXdionvyX8nUegutOAGXjKDp+8MziaUV5Pkg==",
+      "sha512": "fvDbTA/2+A3sfLlXYXOHKIFP/ZcL8yQJnr+VxwyCy2BPK2jLZg3XXStc1AokU5uC+dCDl5k3bpCiBdqYU1bz6g==",
       "type": "package",
       "path": "sqlitepclraw.provider.e_sqlite3.netstandard11/1.1.11",
       "files": [
@@ -2120,7 +2121,7 @@
       ]
     },
     "System.Diagnostics.DiagnosticSource/4.5.1": {
-      "sha512": "m86SgxAIi5j0iGzx2y1LrcMcopIYfinfcojyQ9CcNRy3MZvi0dVuDlMj2M7kV6MMGSunqZ+OnQ+rQbxWafFBaw==",
+      "sha512": "zCno/m44ymWhgLFh7tELDG9587q0l/EynPM0m4KgLaWQbz/TEKvNRX2YT5ip2qXW/uayifQ2ZqbnErsKJ4lYrQ==",
       "type": "package",
       "path": "system.diagnostics.diagnosticsource/4.5.1",
       "files": [
@@ -2211,7 +2212,7 @@
       ]
     },
     "System.Interactive.Async/3.1.1": {
-      "sha512": "hZccYiIE5RS1/J9Tb/BNtosAGVggdlsJm4Ojdu+gDV0p4AIi+LUfUogMKkRacljQEJd2AG6vYzvcjhQFkqoZmw==",
+      "sha512": "x9y2omkjEudKbIVuhUzeWw7ZlouEzpk4W98woCEq1lq9gJxERBKRKDTHF5JPEws9E0f4/Uei/2vLxEy1IrfmMg==",
       "type": "package",
       "path": "system.interactive.async/3.1.1",
       "files": [
@@ -3402,23 +3403,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\vanhornd\\.nuget\\packages\\": {},
+    "C:\\Users\\swanscol\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vanhornd\\Projects\\SDGTraining\\PeopleProTraining\\PeoplePro.Dal\\PeoplePro.Dal.csproj",
+      "projectUniqueName": "C:\\Users\\swanscol\\Source\\Repos\\Coleswn8\\SDGTraining\\PeopleProTraining\\PeoplePro.Dal\\PeoplePro.Dal.csproj",
       "projectName": "PeoplePro.Dal",
-      "projectPath": "C:\\Users\\vanhornd\\Projects\\SDGTraining\\PeopleProTraining\\PeoplePro.Dal\\PeoplePro.Dal.csproj",
-      "packagesPath": "C:\\Users\\vanhornd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vanhornd\\Projects\\SDGTraining\\PeopleProTraining\\PeoplePro.Dal\\obj\\",
+      "projectPath": "C:\\Users\\swanscol\\Source\\Repos\\Coleswn8\\SDGTraining\\PeopleProTraining\\PeoplePro.Dal\\PeoplePro.Dal.csproj",
+      "packagesPath": "C:\\Users\\swanscol\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\swanscol\\Source\\Repos\\Coleswn8\\SDGTraining\\PeopleProTraining\\PeoplePro.Dal\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\vanhornd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\swanscol\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

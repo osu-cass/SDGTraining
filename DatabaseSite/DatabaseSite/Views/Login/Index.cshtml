@@ -1,0 +1,43 @@
+﻿@model DatabaseSite.Models.Login
+
+@{
+    ViewBag.Title = "Login";
+}
+<div id="InputForm">
+    <h1>
+        Login to change the database
+    </h1>
+    @Html.EditorForModel()
+
+    <div>
+        @Html.ActionLink("Return to database", "Index", "Employees")
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#LoginButton").click(function () {
+            var linkhtml='@Html.Raw(HttpUtility.HtmlDecode(Html.ActionLink("Sign Out", "LogOut", "Login").ToHtmlString()))';
+            $.ajax({
+                url: "../../Login/Login",
+                type: "POST",
+                data: { UserName: $("#LoginUser").val(), Password: $("#LoginPassword").val() },
+                success: function (response) {
+                    $("#InputForm").after(response);
+                    $("#InputForm").remove();
+                    $("#LoginLink").html(linkhtml);
+                },
+                error: function (jqXHR) {
+                    if (jqXHR.status == 404) {
+                        $(".warning").remove();
+                        $("#LoginButton").after("<div class='text-danger warning' id='NotFoundWarn'>Invalid user name or password</div>");
+                    }
+                    else if (jqXHR.status == 406) {
+                        $(".warning").remove();
+                        $("#LoginButton").after("<div class='text-danger warning'>Please enter a user name consisting of letters</div>");
+                    }
+                }
+            });
+        });
+    });
+</script>

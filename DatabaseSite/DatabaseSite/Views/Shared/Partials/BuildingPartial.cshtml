@@ -1,0 +1,14 @@
+﻿@model DatabaseSite.Models.Building
+<tr>
+    <td>
+        @Html.DisplayFor(Model => Model.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(Model => Model.Address)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.BuildingId }) |
+        @Html.ActionLink("Details", "Details", new { id = Model.BuildingId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.BuildingId })
+    </td>
+</tr>

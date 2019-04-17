@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[LoginData]
+(
+	[UserId] INT NOT NULL IDENTITY(1,1),
+	[UserName] NVARCHAR(50) NOT NULL,
+	[Password] NVARCHAR(50) NOT NULL
+)

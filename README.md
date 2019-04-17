@@ -1,5 +1,9 @@
 # CASS Soft Dev Group Training
 
+# Implementation
+
+DatabaseSite project has implementation of deliverables. Users are required to login to make changes to the database, but anyone can view the information. Valid login information is a username of `Admin` and a password of `password`. Ajax create and append to table was implemented for departments. There are also unit tests for the controllers(although coverage is not amazing).
+
 ### People Pro - Microsoft .Net Core MVC Application with Entity Framework
 
 ## Before you start
@@ -35,6 +39,5 @@ If you are unfamiliar with git and using github to manage this training project,
   * Testing
 
  ## Issues
-  * This project is for training purposes and may contain issues and bugs
-  
-  
+  * This project is for training purposes and may contain issues and bugs 
+

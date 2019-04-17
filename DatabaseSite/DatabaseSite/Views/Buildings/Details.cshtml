@@ -1,0 +1,15 @@
+﻿@model DatabaseSite.Models.Building
+
+@{
+    ViewBag.Title = "Building Details";
+}
+
+<h2>Building Details</h2>
+
+<div>
+    @Html.DisplayForModel()
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BuildingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

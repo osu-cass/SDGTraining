@@ -1,0 +1,22 @@
+﻿@model PeoplePro.Models.Employee
+
+<div>
+    <div>
+        <label class="control-label">First Name:</label>
+        @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div>
+        <label class="control-label">Last Name:</label>
+        @Html.TextBoxFor(x => x.LastName, new { @class="form-control"})
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div>
+        <label class="control-label">Department:</label>
+        @Html.TextBoxFor(x => x.Department, new { @class = "form-control" })
+        <span asp-validation-for="Department" class="text-danger"></span>
+    </div>
+</div>
+
+
+

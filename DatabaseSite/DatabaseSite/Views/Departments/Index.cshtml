@@ -1,0 +1,78 @@
+﻿@model IEnumerable<DatabaseSite.Models.Department>
+
+@{
+    ViewBag.Title = "Departments";
+}
+
+<h2>PeoplePro Departments</h2>
+
+<table class="table" id="DepTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        @Html.Partial("~/Views/Shared/Partials/DepartmentPartial.cshtml", item);
+    }
+</table>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+
+<div>
+    <button id="OpenButton" class="btn btn-default" >Create a New Department Entry</button>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+          $(document).on('click', '#AddButton', function () {
+            var a = $("#DepNameInput").val();
+            $.ajax({
+                url: "../../Ajax/FirstAjax",
+                type: "POST",
+                data: { name: a },
+                success: function (response) {
+                    $("#DepTable tr:last").after(response);
+                    $("#CreateForm").after("<div> <button id = 'OpenButton' class='btn btn-default'>Create a New Department Entry</button> </div>");
+                    $("#CreateForm").remove();
+                },
+                error: function (jqXHR) {
+                    if (jqXHR.status == 403) {
+                        $('#LoginError').remove();
+                        $('#InputError').remove();
+                        $("#InnerForm").after("<div class='text-danger' id='LoginError'>You must be logged in to change the database</div>");
+                    }
+                    else {
+                        $('#LoginError').remove();
+                        $('#InputError').remove();
+                        $("#InnerForm").after("<div class='text-danger'id='InputError'>Please enter a single word containing only letters</div>");
+                        $("#InnerForm").after(statusCode);
+                    }
+                }
+            });
+        });
+        $(document).on('click', '#OpenButton', function () {
+            var b = $(this);
+            $.ajax({
+                url: "../../Ajax/CreatePrompt",
+                type: "GET",
+                success: function (response) {
+                    $("#OpenButton").after(response);
+                    $("#InnerForm input").focus();
+                    b.remove();
+                },
+                error: function (response) {
+                    alert("there was an error");
+                }
+            });
+        });
+        $(document).on('click', '#CancelButton', function () {
+            $("#CreateForm").after("<div> <button id = 'OpenButton' class='btn btn-default'>Create a New Department Entry</button> </div>");
+            $("#CreateForm").remove();
+        });
+    });
+</script>

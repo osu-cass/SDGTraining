@@ -1,0 +1,38 @@
+﻿@model DatabaseSite.Models.Employee
+
+<dl class="dl-horizontal">
+    <dt>
+        First:
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.FirstName)
+    </dd>
+
+    <dt>
+        Last:
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.LastName)
+    </dd>
+
+    <dt>
+        Building:
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Building.Name)
+    </dd>
+
+    <dt>
+        Department:
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Department.Name)
+    </dd>
+
+</dl>
+
+

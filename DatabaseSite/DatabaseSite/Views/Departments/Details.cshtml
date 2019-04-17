@@ -1,0 +1,15 @@
+﻿@model DatabaseSite.Models.Department
+
+@{
+    ViewBag.Title = "Department Details";
+}
+
+<h2>Department Details</h2>
+
+<div>
+    @Html.DisplayForModel()
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DepartmentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
