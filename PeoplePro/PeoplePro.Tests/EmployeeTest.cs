@@ -20,7 +20,7 @@ namespace PeoplePro.Tests
         {
             // Arrange
             var mockRepo = new Mock<PeopleProContext>();
-            mockRepo.Setup(repo => repo.Employee).ReturnsAsync(GetTestSessions());
+            mockRepo.Setup(repo => repo.Employee.Include(d => d.Department).Include(d => d.Building).ToList()).Returns(GetTestSessions());
             var controller = new EmployeeController(mockRepo.Object);
 
             // Act
@@ -28,9 +28,53 @@ namespace PeoplePro.Tests
 
             // Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsAssignableFrom<IEnumerable<StormSessionViewModel>>(
+            var model = Assert.IsAssignableFrom<IEnumerable<Employee>>(
                 viewResult.ViewData.Model);
             Assert.Equal(2, model.Count());
+        }
+        #endregion
+
+        #region snippet_ModelState_ValidOrInvalid
+        [Fact]
+        public async Task IndexPost_ReturnsBadRequestResult_WhenModelStateIsInvalid()
+        {
+            // Arrange
+            var mockRepo = new Mock<PeopleProContext>();
+            mockRepo.Setup(repo => repo.Employee.Include(d => d.Department).Include(d => d.Building).ToList()).Returns(GetTestSessions());
+            var controller = new EmployeeController(mockRepo.Object);
+            controller.ModelState.AddModelError("SessionName", "Required");
+            var newSession = new EmployeeController.NewSessionModel();
+
+            // Act
+            var result = await controller.Index(newSession);
+
+            // Assert
+            var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+            Assert.IsType<SerializableError>(badRequestResult.Value);
+        }
+
+        [Fact]
+        public async Task IndexPost_ReturnsARedirectAndAddsSession_WhenModelStateIsValid()
+        {
+            // Arrange
+            var mockRepo = new Mock<PeopleProContext>();
+            mockRepo.Setup(repo => repo.Add(It.IsAny<Employee>()))
+                .Returns(Task.CompletedTask)
+                .Verifiable();
+            var controller = new EmployeeController(mockRepo.Object);
+            var newSession = new EmployeeController.NewSessionModel()
+            {
+                SessionName = "Test Name"
+            };
+
+            // Act
+            var result = await controller.Index(newSession);
+
+            // Assert
+            var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Null(redirectToActionResult.ControllerName);
+            Assert.Equal("Index", redirectToActionResult.ActionName);
+            mockRepo.Verify();
         }
         #endregion
 
@@ -47,7 +91,7 @@ namespace PeoplePro.Tests
             });
             sessions.Add(new Employee()
             {
-                ID = 0,
+                ID = 1,
                 FirstName = "Link",
                 BuildingID = 2,
                 DepartmentID = 2

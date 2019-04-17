@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -205,6 +205,34 @@ namespace PeoplePro.Controllers
         private bool EmployeeExists(int id)
         {
             return _context.Employee.Any(e => e.ID == id);
+        }
+
+
+        public class NewSessionModel
+        {
+            [Required]
+            public string SessionName { get; set; }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(NewSessionModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            else
+            {
+                await _context.AddAsync(new Employee()
+                {
+                    ID = 2,
+                    FirstName = "John",
+                    BuildingID = 1,
+                    DepartmentID = 1
+                });
+            }
+
+            return RedirectToAction(actionName: nameof(Index));
         }
     }
 }
