@@ -1,15 +1,40 @@
 ﻿@model DatabaseSite.Models.Login
 
-<h1>
-    Login to change the database
-</h1>
-
-
-@using (Html.BeginForm("Login", "Login", FormMethod.Post))
-{
+<div id="InputForm">
+    <h1>
+        Login to change the database
+    </h1>
     @Html.EditorForModel()
-}
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    <div>
+        @Html.ActionLink("Return to database", "Index", "Employees")
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#LoginButton").click(function () {
+            var linkhtml='@Html.Raw(HttpUtility.HtmlDecode(Html.ActionLink("Sign Out", "LogOut", "Login").ToHtmlString()))';
+            $.ajax({
+                url: "../../Login/Login",
+                type: "POST",
+                data: { UserName: $("#LoginUser").val(), Password: $("#LoginPassword").val() },
+                success: function (response) {
+                    $("#InputForm").after(response);
+                    $("#InputForm").remove();
+                    $("#LoginLink").html(linkhtml);
+                },
+                error: function (jqXHR) {
+                    if (jqXHR.status == 404) {
+                        $("#NotFoundWarn").remove();
+                        $("#LoginButton").after("<div class=text-danger id='NotFoundWarn'>Invalid user name or password</div>");
+                    }
+                }
+
+
+
+
+            });
+        });
+    });
+</script>

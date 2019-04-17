@@ -2,19 +2,22 @@
 <div class="form-horizontal">
     <div class="form-group">
         <div class="col-md-10">
-            @Html.TextBoxFor(s => s.UserName, new { autocomplete = "off", htmlAttributes = new { @class = "form-control" } })
+            @Html.TextBoxFor(s => s.UserName, new { autocomplete = "off", id = "LoginUser", htmlAttributes = new { @class = "form-control"} })
             @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-10">
-            @Html.TextBoxFor(s => s.Password, new { autocomplete = "off", htmlAttributes = new { @class = "form-control" } })
+            @Html.TextBoxFor(s => s.Password, new { autocomplete = "off", id = "LoginPassword", htmlAttributes = new { @class = "form-control"} })
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" />
+            <input type="submit" class="btn btn-default"/>
         </div>
+    </div>
+    <div>
+        <button id="LoginButton">Click</button>
     </div>
 </div>

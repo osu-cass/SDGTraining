@@ -20,7 +20,7 @@ namespace DatabaseSite.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            return View(db.Buildings.ToList());
+            return View("Index", db.Buildings.ToList());
         }
 
         // GET: Buildings/Details/5
@@ -59,7 +59,7 @@ namespace DatabaseSite.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(building);
+            return View("Create",building);
         }
 
         // GET: Buildings/Edit/5
@@ -74,7 +74,7 @@ namespace DatabaseSite.Controllers
             {
                 return HttpNotFound();
             }
-            return View(building);
+            return View("Edit",building);
         }
 
         // POST: Buildings/Edit/5
@@ -105,7 +105,7 @@ namespace DatabaseSite.Controllers
             {
                 return HttpNotFound();
             }
-            return View(building);
+            return View("Delete",building);
         }
 
         // POST: Buildings/Delete/5

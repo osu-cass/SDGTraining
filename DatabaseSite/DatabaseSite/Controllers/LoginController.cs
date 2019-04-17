@@ -20,8 +20,13 @@ namespace DatabaseSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login([Bind(Include = "UserName,Password")] Login data)
+        public ActionResult Login(string UserName, string Password)
         {
+            var data = new Login
+            {
+                UserName = UserName,
+                Password = Password,
+            };
             int valid = db.LoginDatas.Where(x => x.UserName == data.UserName && x.Password == data.Password).Count();
             if (valid > 0)
             {
@@ -29,10 +34,11 @@ namespace DatabaseSite.Controllers
                 var employees = db.Employees.Include(e => e.Building).Include(e => e.Department);
                 ViewBag.Login = "Sign Out";
                 ViewBag.LoginAction = "LogOut";
-                return View("~/Views/Employees/Index.cshtml", employees.ToList());
+                return PartialView("~/Views/Shared/Partials/Success.cshtml");
             }
-            return View("~/Views/Login/Index.cshtml", data);
+            return new HttpStatusCodeResult(404, "User and password not found");
         }
+        [Authorize]
 
         public ActionResult LogOut()
         {
