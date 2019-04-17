@@ -1,0 +1,36 @@
+﻿@model PeoplePro.Models.Department
+
+<div id="confirmModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="confirmModalTitle" class="modal-title">Are You Sure?</h3>
+                <button class="close" type="button" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>Are you sure you want to delete this Department?</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Building)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Building.Name)
+                    </dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" data-dismiss="modal">No, Go Back</button>
+                <button class="btn btn-danger" type="button" data-delete="delete-modal" data-url="@Url.Action("Delete")">Yes, DEW IT!</button>
+            </div>
+        </div>
+    </div>
+</div>
