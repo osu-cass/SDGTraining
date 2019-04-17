@@ -11,7 +11,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DatabaseSite.Controllers
 {
-    public class AjaxTestController : Controller
+    public class AjaxController : Controller
     {
         private PeopleProDatabaseEntities db = new PeopleProDatabaseEntities();
         public ActionResult Index()

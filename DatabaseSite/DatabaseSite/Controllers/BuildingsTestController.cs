@@ -20,4 +20,5 @@ namespace DatabaseSite.TestControllers
             Assert.AreEqual("Details", res.ViewName);
         }
     }
+
 }
