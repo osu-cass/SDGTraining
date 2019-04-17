@@ -16,14 +16,14 @@ namespace PeoplePro.Controllers
             _context = context;
         }
 
-        // AJAX GET: Departments/ShowDepartmentModal
-        public IActionResult ShowDepartmentModal()
+        // AJAX GET: Departments/Add
+        public IActionResult Add()
         {
             var model = new Department();
 
             ViewBag.Buildings = new SelectList(_context.Buildings, "Id", "Name");
 
-            return PartialView("_DepartmentModal", model);
+            return PartialView("_AddEditModal", model);
         }
 
         // AJAX POST: Departments/Add
@@ -63,30 +63,6 @@ namespace PeoplePro.Controllers
                 return NotFound();
             }
 
-            return View(department);
-        }
-
-        // GET: Departments/Create
-        public IActionResult Create()
-        {
-            ViewData["BuildingId"] = new SelectList(_context.Set<Building>(), "Id", "Name");
-            return View();
-        }
-
-        // POST: Departments/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,BuildingId")] Department department)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(department);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["BuildingId"] = new SelectList(_context.Set<Building>(), "Id", "Name", department.BuildingId);
             return View(department);
         }
 
@@ -141,34 +117,34 @@ namespace PeoplePro.Controllers
             return View(department);
         }
 
-        // GET: Departments/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // AJAX GET: Departments/Delete
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var department = await _context.Departments
+            var model = _context.Departments
                 .Include(d => d.Building)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (department == null)
+                .FirstOrDefault(m => m.Id == id);
+
+            if (model == null)
             {
                 return NotFound();
             }
 
-            return View(department);
+            return PartialView("_ConfirmModal", model);
         }
 
-        // POST: Departments/Delete/5
+        // AJAX POST: Departments/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var department = await _context.Departments.FindAsync(id);
+            var department = _context.Departments.Find(id);
             _context.Departments.Remove(department);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            _context.SaveChanges();
+            return Json(new { id = id });
         }
 
         private bool DepartmentExists(int id)

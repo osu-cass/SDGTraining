@@ -1,8 +1,8 @@
-﻿$(function () {
+﻿$(function() {
     var departmentModalPlaceholder = $('#departmentModalPlaceholder');
 
-    // select buttons with a  data-toggle="ajax-modal"  attribute
-    $('button[data-toggle="ajax-modal"]').click(function () {
+    // select buttons with a  data-toggle="add-modal"  attribute
+    $('button[data-toggle="add-modal"]').click(function() {
         var url = $(this).data('url');
 
         // make an AJAX request to show the department modal
@@ -12,8 +12,8 @@
         });
     });
 
-    // select buttons with a  data-save="ajax-modal"  attribute
-    departmentModalPlaceholder.on('click', '[data-save="ajax-modal"]', function (event) {
+    // select buttons with a  data-save="add-modal"  attribute
+    departmentModalPlaceholder.on('click', '[data-save="add-modal"]', function(event) {
         event.preventDefault();
 
         var form = $(this).parents('.modal').find('form');
@@ -33,9 +33,39 @@
 
                 // response is the whole  <html></html>  content, find the last  <tr>  tag
                 var newRow = $('<div></div>').hide().html(res).find('tr').last();
-                // append to table
+                // bind a click event to the buttons on this row
+                newRow.find('button[data-toggle="delete-modal"]').click(showDepartmentConfirmModal);
+                // append to table - update view
                 $('tbody').append(newRow);
             }
         });
     });
+
+    // select buttons with a  data-toggle="delete-modal"  attribute
+    $('button[data-toggle="delete-modal"]').click(showDepartmentConfirmModal);
+
+    // select button with a  data-delete="delete-modal"  attribute
+    departmentModalPlaceholder.on('click', '[data-delete="delete-modal"]', function(event) {
+        event.preventDefault();
+
+        var url = $(this).data('url');
+
+        // make an AJAX request to delete this department
+        $.post(url, null, (res) => {
+            departmentModalPlaceholder.find('.modal').modal('hide');
+
+            // Remove the  <tr>  with matching button action URL - update view
+            $('tr button[data-url="' + url + '"]').parents('tr').remove();
+        });
+    })
 });
+
+function showDepartmentConfirmModal() {
+    var url = $(this).data('url');
+
+    // make an AJAX request to show the confirmation modal
+    $.get(url, (res) => {
+        $('#departmentModalPlaceholder').html(res);
+        $('#departmentModalPlaceholder').find('.modal').modal('show');
+    });
+}
