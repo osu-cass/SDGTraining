@@ -1,5 +1,8 @@
 ﻿@model DatabaseSite.Models.Login
 
+@{
+    ViewBag.Title = "Login";
+}
 <div id="InputForm">
     <h1>
         Login to change the database
@@ -26,14 +29,14 @@
                 },
                 error: function (jqXHR) {
                     if (jqXHR.status == 404) {
-                        $("#NotFoundWarn").remove();
-                        $("#LoginButton").after("<div class=text-danger id='NotFoundWarn'>Invalid user name or password</div>");
+                        $(".warning").remove();
+                        $("#LoginButton").after("<div class='text-danger warning' id='NotFoundWarn'>Invalid user name or password</div>");
+                    }
+                    else if (jqXHR.status == 406) {
+                        $(".warning").remove();
+                        $("#LoginButton").after("<div class='text-danger warning'>Please enter a user name consisting of letters</div>");
                     }
                 }
-
-
-
-
             });
         });
     });

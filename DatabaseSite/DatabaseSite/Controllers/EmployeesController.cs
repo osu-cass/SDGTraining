@@ -21,7 +21,7 @@ namespace DatabaseSite.Controllers
         public ActionResult Index()
         {
             var employees = db.Employees.Include(e => e.Building).Include(e => e.Department);
-            return View(employees.ToList());
+            return View("Index", employees.ToList());
         }
 
         // GET: Employees/Details/5
@@ -37,7 +37,7 @@ namespace DatabaseSite.Controllers
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View("Details", employee);
         }
 
         // GET: Employees/Create
@@ -45,7 +45,7 @@ namespace DatabaseSite.Controllers
         {
             ViewBag.BuildingId = new SelectList(db.Buildings, "BuildingId", "Name");
             ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "Name");
-            return View();
+            return View("Create");
         }
 
         // POST: Employees/Create
@@ -64,7 +64,7 @@ namespace DatabaseSite.Controllers
 
             ViewBag.BuildingId = new SelectList(db.Buildings, "BuildingId", "Name", employee.BuildingId);
             ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "Name", employee.DepartmentId);
-            return View(employee);
+            return View("Create",employee);
         }
 
         // GET: Employees/Edit/5
@@ -81,7 +81,7 @@ namespace DatabaseSite.Controllers
             }
             ViewBag.BuildingId = new SelectList(db.Buildings, "BuildingId", "Name", employee.BuildingId);
             ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "Name", employee.DepartmentId);
-            return View(employee);
+            return View("Edit",employee);
         }
 
         // POST: Employees/Edit/5
@@ -114,7 +114,7 @@ namespace DatabaseSite.Controllers
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View("Delete",employee);
         }
 
         // POST: Employees/Delete/5

@@ -251,9 +251,7 @@
     <Content Include="Views\Departments\Edit.cshtml" />
     <Content Include="Views\Departments\Index.cshtml" />
     <Content Include="Views\Shared\Partials\DepartmentPartial.cshtml" />
-    <Content Include="Views\AjaxTest\Index.cshtml" />
     <Content Include="Views\Shared\Partials\CreateDepartmentPartial.cshtml" />
-    <Content Include="Views\Shared\Partials\TestingPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Employee.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Department.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Building.cshtml" />
@@ -261,6 +259,7 @@
     <Content Include="Views\Login\LogOut.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Login.cshtml" />
     <Content Include="Views\Shared\Partials\Success.cshtml" />
+    <Content Include="Views\Shared\Partials\BuildingPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DatabaseSite.Models.Building>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Buildings";
 }
 
 <h2>Index</h2>
@@ -20,20 +20,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BuildingId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BuildingId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BuildingId })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model){
+        @Html.Partial("~/Views/Shared/Partials/BuildingPartial.cshtml", item)
+    }
 </table>

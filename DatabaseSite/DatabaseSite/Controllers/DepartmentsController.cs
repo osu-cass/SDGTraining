@@ -21,11 +21,7 @@ namespace DatabaseSite.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                ViewBag.Login = "Sign Out";
-            }
-            return View(db.Departments.ToList());
+            return View("Index", db.Departments.ToList());
         }
 
         // GET: Departments/Details/5
@@ -42,14 +38,14 @@ namespace DatabaseSite.Controllers
                 return HttpNotFound("Not a vaild Id");
             
             }
-            return View(department);
+            return View("Details",department);
         }
 
         // GET: Departments/Create
-        public ActionResult Create()
+        /*public ActionResult Create()
         {
             return View();
-        }
+        }*/
 
         // POST: Departments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -65,7 +61,7 @@ namespace DatabaseSite.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(department);
+            return View("Create", department);
         }
         public ActionResult AddDepartment()
         {
@@ -85,7 +81,7 @@ namespace DatabaseSite.Controllers
             {
                 return HttpNotFound();
             }
-            return View(department);
+            return View("Edit",department);
         }
 
         // POST: Departments/Edit/5
@@ -101,7 +97,7 @@ namespace DatabaseSite.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(department);
+            return View("Edit",department);
         }
 
         // GET: Departments/Delete/5
@@ -116,7 +112,7 @@ namespace DatabaseSite.Controllers
             {
                 return HttpNotFound();
             }
-            return View(department);
+            return View("Delete",department);
         }
 
         // POST: Departments/Delete/5

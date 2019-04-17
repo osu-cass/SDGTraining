@@ -16,7 +16,7 @@ namespace DatabaseSite.Controllers
         public ActionResult Index()
         {
             //FormsAuthentication.SignOut();
-            return View(new Login());
+            return View("Index", new Login());
         }
 
         [HttpPost]
@@ -27,6 +27,13 @@ namespace DatabaseSite.Controllers
                 UserName = UserName,
                 Password = Password,
             };
+            if (!TryValidateModel(data))
+            {
+                return new HttpStatusCodeResult(406, "Fields are not valid");
+            }
+            {
+
+            } 
             int valid = db.LoginDatas.Where(x => x.UserName == data.UserName && x.Password == data.Password).Count();
             if (valid > 0)
             {

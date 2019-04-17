@@ -14,10 +14,6 @@ namespace DatabaseSite.Controllers
     public class AjaxController : Controller
     {
         private PeopleProDatabaseEntities db = new PeopleProDatabaseEntities();
-        public ActionResult Index()
-        {
-            return View();
-        }
         [HttpPost]
         public ActionResult FirstAjax(string name)
         {
@@ -26,7 +22,7 @@ namespace DatabaseSite.Controllers
             var dep = new Department
             {
                 Name = name,
-                DepartmentId = db.Departments.Count()
+                //DepartmentId = db.Departments.Count()
             };
 
             if(TryValidateModel(dep) && User.Identity.IsAuthenticated)
@@ -50,18 +46,6 @@ namespace DatabaseSite.Controllers
         public ActionResult CreatePrompt()
         {
             return PartialView("~/Views/Shared/Partials/CreateDepartmentPartial.cshtml");
-        }
-
-        [HttpPost]
-        public ActionResult Login(Login data)
-        {
-            int valid = db.LoginDatas.Where(x => x.UserName == data.UserName && x.Password == data.Password).Count();
-            if(valid > 0)
-            {
-                FormsAuthentication.SetAuthCookie(data.UserName, false);
-                return View("~/Views/Employees/Index.cshtml");
-            }
-            return View("~/Views/Login/Test.cshtml", data);
         }
     }
 }
