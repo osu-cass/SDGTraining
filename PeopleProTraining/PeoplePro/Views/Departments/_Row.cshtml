@@ -1,0 +1,15 @@
+﻿@model PeoplePro.Models.Department
+
+<tr>
+    <td>
+        @Html.DisplayFor(model => model.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.Building.Name)
+    </td>
+    <td>
+        <button class="btn btn-sm btn-light" type="button" data-toggle="edit-modal" data-target="#departmentModal" data-url="/Departments/Edit/@Model.Id">Edit</button>
+        <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-sm btn-info">Details</a>
+        <button class="btn btn-sm btn-danger" type="button" data-toggle="delete-modal" data-target="#confirmModal" data-url="@Url.Action("Delete")/@Model.Id">Delete</button>
+    </td>
+</tr>

@@ -1,16 +1,12 @@
 ﻿@model IEnumerable<PeoplePro.Models.Department>
-
 @{
     ViewData["Title"] = "Index";
 }
-
 <div id="departmentModalPlaceholder"></div>
-
 <h1>Index</h1>
-
 @*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
+        <a asp-action="Create">Create New</a>
+    </p>*@
 <table class="table">
     <thead>
         <tr>
@@ -26,23 +22,10 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Building.Name)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
-                    <button class="btn btn-sm btn-danger" type="button" data-toggle="delete-modal" data-target="#confirmModal" data-url="@Url.Action("Delete")/@item.Id">Delete</button>
-                </td>
-            </tr>
+            <partial name="_Row" model="item" />
         }
     </tbody>
 </table>
-
 <button class="btn btn-primary btn-block" type="button" data-toggle="add-modal" data-target="#departmentModal" data-url="@Url.Action("Add")">
     Add Department
 </button>

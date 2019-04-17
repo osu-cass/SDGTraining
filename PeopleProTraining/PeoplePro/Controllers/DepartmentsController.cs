@@ -16,36 +16,13 @@ namespace PeoplePro.Controllers
             _context = context;
         }
 
-        // AJAX GET: Departments/Add
-        public IActionResult Add()
-        {
-            var model = new Department();
-
-            ViewBag.Buildings = new SelectList(_context.Buildings, "Id", "Name");
-
-            return PartialView("_AddEditModal", model);
-        }
-
-        // AJAX POST: Departments/Add
-        [HttpPost]
-        public IActionResult Add([Bind("Id,Name,BuildingId")] Department department)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(department);
-                _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
-            }
-            return Json(new { err = true });
-        }
-
         // GET: Departments
         public async Task<IActionResult> Index()
         {
             var peopleProContext = _context.Departments.Include(d => d.Building);
             return View(await peopleProContext.ToListAsync());
         }
-
+        
         // GET: Departments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -66,29 +43,64 @@ namespace PeoplePro.Controllers
             return View(department);
         }
 
+        // AJAX GET: Departments/Add
+        public IActionResult Add()
+        {
+            ViewBag.Buildings = new SelectList(_context.Buildings, "Id", "Name");
+            ViewBag.AddOrEdit = "Add";
+
+            return PartialView("_AddEditModal", new Department());
+        }
+
+        // AJAX POST: Departments/Add
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Add([Bind("Id,Name,BuildingId")] Department department)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(department);
+                _context.SaveChanges();
+
+                Department newDepartment = _context.Departments
+                    .Include(d => d.Building)
+                    .ToList()
+                    .FirstOrDefault(d => d.Id == department.Id);
+
+                return PartialView("_Row", newDepartment);
+            }
+            return Json(new { err = true });
+        }
+
         // GET: Departments/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var department = await _context.Departments.FindAsync(id);
-            if (department == null)
+            Department model = _context.Departments
+                .Include(d => d.Building)
+                .FirstOrDefault(d => d.Id == id);
+
+            if (model == null)
             {
                 return NotFound();
             }
-            ViewData["BuildingId"] = new SelectList(_context.Set<Building>(), "Id", "Name", department.BuildingId);
-            return View(department);
+
+            ViewBag.Buildings = new SelectList(_context.Buildings, "Id", "Name");
+            ViewBag.AddOrEdit = "Edit";
+
+            return PartialView("_AddEditModal", model);
         }
 
-        // POST: Departments/Edit/5
+        // AJAX POST: Departments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,BuildingId")] Department department)
+        //[ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, [Bind("Id,Name,BuildingId")] Department department)
         {
             if (id != department.Id)
             {
@@ -100,7 +112,7 @@ namespace PeoplePro.Controllers
                 try
                 {
                     _context.Update(department);
-                    await _context.SaveChangesAsync();
+                    _context.SaveChanges();
                 } catch (DbUpdateConcurrencyException)
                 {
                     if (!DepartmentExists(department.Id))
@@ -111,7 +123,13 @@ namespace PeoplePro.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+
+                Department updatedDepartment = _context.Departments
+                    .Include(d => d.Building)
+                    .ToList()
+                    .FirstOrDefault(d => d.Id == department.Id);
+
+                return PartialView("_Row", updatedDepartment);
             }
             ViewData["BuildingId"] = new SelectList(_context.Set<Building>(), "Id", "Name", department.BuildingId);
             return View(department);
@@ -144,7 +162,7 @@ namespace PeoplePro.Controllers
             var department = _context.Departments.Find(id);
             _context.Departments.Remove(department);
             _context.SaveChanges();
-            return Json(new { id = id });
+            return Json(new { id });
         }
 
         private bool DepartmentExists(int id)
