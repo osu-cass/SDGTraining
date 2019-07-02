@@ -1,0 +1,102 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using PeoplePro.Models;
+
+namespace PeoplePro.Migrations
+{
+    public partial class Var_Fixes : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "Building",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Building", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Department",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    BuildingID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Department", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Department_Building_BuildingID",
+                        column: x => x.BuildingID,
+                        principalTable: "Building",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employee",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FirstName = table.Column<string>(maxLength: 60, nullable: true),
+                    DepartmentID = table.Column<int>(nullable: false),
+                    BuildingID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employee", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Employee_Building_BuildingID",
+                        column: x => x.BuildingID,
+                        principalTable: "Building",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Employee_Department_DepartmentID",
+                        column: x => x.DepartmentID,
+                        principalTable: "Department",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Department_BuildingID",
+                table: "Department",
+                column: "BuildingID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employee_BuildingID",
+                table: "Employee",
+                column: "BuildingID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employee_DepartmentID",
+                table: "Employee",
+                column: "DepartmentID");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "Employee");
+
+            migrationBuilder.DropTable(
+                name: "Department");
+
+            migrationBuilder.DropTable(
+                name: "Building");
+        }
+    }
+}

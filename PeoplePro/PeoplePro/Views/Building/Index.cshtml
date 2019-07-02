@@ -1,0 +1,16 @@
+﻿@model IEnumerable<PeoplePro.Models.Building>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div id="modal-placeholder"></div>
+
+@await Html.PartialAsync("_Table", Model)
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#add-building" data-url="@Url.Action("BuildingModal")">
+    Add Building
+</button>
